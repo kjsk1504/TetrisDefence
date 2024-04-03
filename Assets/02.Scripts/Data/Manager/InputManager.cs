@@ -12,16 +12,20 @@ namespace TetrisDefence.Data.Manager
         public static bool IsTabDown { get; private set; } = false;
         public static bool IsShiftTabDown { get; private set; } = false;
         public static bool IsEnterDown { get; private set; } = false;
+        public static bool IsLeftClicked { get; private set; } = false;
+        public static bool IsRightClicked { get; private set; } = false;
 
         private void Update()
         {
+            inputString = Input.inputString;
+            mousePosition = Input.mousePosition;
             Horizontal = Input.GetAxis("Horizontal");
             Vertical = Input.GetAxis("Vertical");
             IsTabDown = Input.GetKeyDown(KeyCode.Tab) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
             IsShiftTabDown = Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
             IsEnterDown = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
-            inputString = Input.inputString;
-            mousePosition = Input.mousePosition;
+            IsLeftClicked = Input.GetMouseButtonDown(0);
+            IsRightClicked = Input.GetMouseButtonDown(1);
         }
     }
 }

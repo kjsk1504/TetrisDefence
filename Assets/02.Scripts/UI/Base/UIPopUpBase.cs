@@ -13,7 +13,7 @@ namespace TetrisDefence.UI.Base
         {
             base.InputAction();
 
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if (InputManager.IsLeftClicked || InputManager.IsRightClicked)
             {
                 // 유저가 다른 UI 와 상호작용하려고 시도했다면
                 if (UIManager.instance.TryCastOther(this, out IUI other, out GameObject hovered))
@@ -40,6 +40,7 @@ namespace TetrisDefence.UI.Base
         protected override void Awake()
         {
             base.Awake();
+            canvas.enabled = false;
 
             if (_hideWhenPointerDownOutside)
                 CreateOutsidePanel();

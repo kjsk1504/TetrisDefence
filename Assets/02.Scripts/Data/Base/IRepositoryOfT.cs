@@ -18,33 +18,33 @@ namespace TetrisDefence.Data.Base
         /// 모든 데이터 순회용 함수
         /// </summary>
         /// <returns> 데이터 리스트 </returns>
-        IEnumerable<T> GetAllItems();
+        IEnumerable<T> GetAllDatas();
 
         /// <summary>
-        /// ID로 데이터 검색용 함수
+        /// 인덱스로 데이터 검색용 함수
         /// </summary>
-        /// <param name="id"> 검색할 데이터의 ID </param>
+        /// <param name="id"> 검색할 데이터의 인덱스 </param>
         /// <returns> 검색된 데이터 </returns>
-        T GetItemByID(int id);
+        T GetDataByID(int id);
 
         /// <summary>
         /// 데이터 삽입용 함수
         /// </summary>
-        /// <param name="item"> 삽입할 데이터 </param>
-        void InsertItem(T item);
+        /// <param name="data"> 삽입할 데이터 </param>
+        void InsertData(T data);
 
         /// <summary>
         /// 데이터 삭제용 함수
         /// </summary>
-        /// <param name="item"> 삭제할 데이터 </param>
-        void DeleteItem(T item);
+        /// <param name="data"> 삭제할 데이터 </param>
+        void DeleteData(T data);
 
         /// <summary>
-        /// ID에 해당하는 데이터 갱신용 함수
+        /// 인덱스에 해당하는 데이터 갱신용 함수
         /// </summary>
-        /// <param name="id"> 검색할 ID </param>
-        /// <param name="item"> 갱신할 데이터 </param>
-        void UpdateItem(int id, T item);
+        /// <param name="id"> 검색할 인덱스 </param>
+        /// <param name="data"> 갱신할 데이터 </param>
+        void UpdateData(int id, T data);
 
         /// <summary>
         /// 데이터 변동내용 DB에 일괄 저장용 함수
