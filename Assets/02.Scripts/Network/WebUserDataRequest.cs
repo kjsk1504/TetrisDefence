@@ -1,9 +1,14 @@
+using TetrisDefence.Data.Utill;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Networking;
+using Debug = UnityEngine.Debug;
 
-public class WebUserDataRequest : MonoBehaviour
+public class WebUserDataRequest : SingletonMonoBase<WebUserDataRequest>
 {
+    private Process process;
+
     // ip 주소.
     [SerializeField] string _url = "localhost";
 
@@ -11,20 +16,48 @@ public class WebUserDataRequest : MonoBehaviour
     [SerializeField] string _port = "3000";
 
 
+    private void OnEnable()
+    {
+        ProcessStartInfo processInfo = new ProcessStartInfo("node.exe", "C:\\Users\\kjsk1\\Documents\\kjs\\Workspace\\Nodejs\\TetrisDefenceServer\\index.js");
+        processInfo.CreateNoWindow = false;
+        process = Process.Start(processInfo);
+    }
+
+    private void OnDisable()
+    {
+        ProcessStartInfo processInfo = new ProcessStartInfo("taskkill.exe", "/f /im node.exe");
+        Process.Start(processInfo);
+    }
+
+    private string CreateRequestURL(string path)
+    {
+        string requestURL = $"{_url}:{_port}/{path}";
+
+        if (_url != "localhost")
+        {
+            requestURL = "http://" + requestURL;
+        }
+
+        return requestURL;
+    }
+
+    public void ConnectionCheck()
+    {
+        StartCoroutine(RequestGet($"{_url}:{_port}"));
+    }
+
     // Get 버튼 눌리면 실행할 함수.
     public void OnGetButtonClicked(string path)
     {
-        StartCoroutine(RequestGet($"{_url}:{_port}/{path}"));
+        StartCoroutine(RequestGet(CreateRequestURL(path)));
     }
 
     IEnumerator RequestGet(string requestURL)
     {
         UnityWebRequest request;
-        if (_url == "localhost")
-            request = UnityWebRequest.Get(requestURL);
 
         // 서버에 요청하는 객체 생성.
-        request = UnityWebRequest.Get($"http://{requestURL}");
+        request = UnityWebRequest.Get(requestURL);
 
         // 서버에서 응답이 오기까지 대기 (비동기).
         yield return request.SendWebRequest();
@@ -43,7 +76,7 @@ public class WebUserDataRequest : MonoBehaviour
     // Post 버튼 눌리면 실행할 함수.
     public void OnPostButtonClicked(string path, string id, string pw)
     {
-        StartCoroutine(RequestPost($"{_url}:{_port}/{path}", id, pw));
+        StartCoroutine(RequestPost(CreateRequestURL(path), id, pw));
     }
 
     // Post 요청 함수.

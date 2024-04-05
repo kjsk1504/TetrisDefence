@@ -1,9 +1,8 @@
-using TetrisDefence.UI.Base;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-namespace DiceGame.UI
+namespace TetrisDefence.UI
 {
     public class UIConfirmWindow : UIPopUpBase
     {

@@ -1,4 +1,3 @@
-using TetrisDefence.UI.Base;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
@@ -12,7 +11,6 @@ namespace TetrisDefence.UI
         [SerializeField] Button _confirm;
         [SerializeField] Button _cancel;
         [SerializeField] Button _xButton;
-        [SerializeField] WebUserDataRequest _request;
 
 
         protected override void Awake()
@@ -21,7 +19,7 @@ namespace TetrisDefence.UI
 
             _confirm.onClick.AddListener(() =>
             {
-                _request.OnPostButtonClicked("signup", _id.text, _pw.text);
+                WebUserDataRequest.Instance.OnPostButtonClicked("signup", _id.text, _pw.text);
             });
 
             _cancel.onClick.AddListener(Hide);

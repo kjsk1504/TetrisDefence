@@ -5,110 +5,149 @@ using UnityEngine.UI;
 
 namespace TetrisDefence.Data.Utill
 {
+    /// <summary>
+    /// <see langword="Tab"/>을 이용해 <see cref="Selectable"/>을 선택할 수 있게 함 <br><see cref="MonoBehaviour"/>를 상속 받음</br>
+    /// </summary>
     public class FocusControll : MonoBehaviour
     {
-        [SerializeField]
-        Selectable[] selectables;
+        /// <summary> 선택 가능한 게임 오브젝트들 </summary>
+        [field: SerializeField] Selectable[] selectables;
+        /// <summary> <see cref="Selectable"/> 중 선택된 인덱스 </summary>
+        private int _selectedIndex = 0;
+        /// <summary>  확인하는 비동기 함수 </summary>
+        private Coroutine _focusUpdate = null;
 
-        int selectedIdx = 0;
-        Coroutine focusupdate = null;
 
-
+        /// <summary>
+        /// 자식 오브젝트들 중에 <see cref="Selectable"/>을 <see cref="selectables"/>에 저장
+        /// </summary>
         private void Awake()
         {
             selectables = GetComponentsInChildren<Selectable>(true);
         }
 
+        /// <summary>
+        /// <see cref="SetDefFocus"/>를 실행해서 현재 활성화된 오브젝트를 찾고 <see cref="FocusUpdate"/>로 
+        /// </summary>
         private void OnEnable()
         {
             StartCoroutine(SetDefFocus());
-            focusupdate = StartCoroutine(FocusUpdate());
+            _focusUpdate = StartCoroutine(FocusUpdate());
         }
 
-        IEnumerator SetDefFocus()
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OnDisable()
+        {
+            StopCoroutine(_focusUpdate);
+        }
+
+        /// <summary>
+        /// 현재 활성화되어 있는 게임 오브젝트를 찾는 함수
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator SetDefFocus()
         {
             yield return new WaitForEndOfFrame();
             for (int i = 0; i < selectables.Length; i++)
+            {
+                if (i == _selectedIndex)
+                {
+                    continue;
+                }
+
+                else if (selectables[i].gameObject.activeSelf == true && selectables[i].IsInteractable() == true)
+                {
+                    selectables[i].Select();
+
+                    _selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator FocusUpdate()
+        {
+            while (true)
+            {
+                KeyDownBind();
+                yield return null;
+            }
+        }
+
+        /// <summary>
+        /// <see langword="Tab"/>나 <see langword="Shift+Tab"/>이 눌렸는지 확인하는 함수.
+        /// </summary>
+        private void KeyDownBind()
+        {
+            if (InputManager.Instance.IsShiftTabDown)
+            {
+                MoveBackward();
+            }
+            else if (InputManager.Instance.IsTabDown)
+            {
+                MoveForward();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void MoveBackward()
+        {
+            int idx = 0;
+            if (_selectedIndex <= 0)
+            {
+                idx = selectables.Length - 1;
+            }
+            else
+            {
+                idx = _selectedIndex - 1;
+            }
+            for (int i = idx; i < selectables.Length; i--)
             {
                 if (selectables[i].gameObject.activeSelf == true && selectables[i].IsInteractable() == true)
                 {
                     selectables[i].Select();
 
-                    selectedIdx = i;
+                    _selectedIndex = i;
                     break;
                 }
-            }
-        }
-        private void OnDisable()
-        {
-            StopCoroutine(focusupdate);
-        }
-
-        IEnumerator FocusUpdate()
-        {
-            while (true)
-            {
-                KeyDownBind();
-                yield return new WaitForSeconds(0);
+                if (i == 0)
+                {
+                    i = selectables.Length - 1;
+                }
             }
         }
 
-        private void KeyDownBind()
+        /// <summary>
+        /// 
+        /// </summary>
+        private void MoveForward()
         {
-            if (InputManager.IsShiftTabDown)
+            int idx = 0;
+            if (_selectedIndex >= selectables.Length - 1)
             {
-                Debug.Log("backward");
-                int idx = 0;
-                if (selectedIdx <= 0)
-                {
-                    idx = selectables.Length - 1;
-                }
-                else
-                {
-                    idx = selectedIdx - 1;
-                }
-                for (int i = idx; i < selectables.Length; i--)
-                {
-                    if (selectables[i].gameObject.activeSelf == true && selectables[i].IsInteractable() == true)
-                    {
-                        selectables[i].Select();
-
-                        selectedIdx = i;
-                        break;
-                    }
-                    if (i == 0)
-                        i = selectables.Length - 1;
-                }
+                idx = 0;
             }
-            else if (InputManager.IsTabDown)
+            else
             {
-                Debug.Log("forward");
-                int idx = 0;
-                if (selectedIdx >= selectables.Length - 1)
-                {
-                    idx = 0;
-                }
-                else
-                {
-                    idx = selectedIdx + 1;
-                }
-                for (int i = idx; i < selectables.Length; i++)
-                {
-                    if (selectables[i].gameObject.activeSelf == true && selectables[i].IsInteractable() == true)
-                    {
-                        selectables[i].Select();
-
-                        selectedIdx = i;
-                        break;
-                    }
-                }
-
+                idx = _selectedIndex + 1;
             }
-            else if (InputManager.IsEnterDown)
+            for (int i = idx; i < selectables.Length; i++)
             {
-                Button button = GetComponentInChildren<Button>(true);
-                if (button != null)
-                    button.onClick.Invoke();
+                if (selectables[i].gameObject.activeSelf == true && selectables[i].IsInteractable() == true)
+                {
+                    selectables[i].Select();
+
+                    _selectedIndex = i;
+                    break;
+                }
             }
         }
     }

@@ -1,24 +1,24 @@
-using TetrisDefence.Data.Base;
+using TetrisDefence.Data.Utill;
 using UnityEngine;
 
 namespace TetrisDefence.Data.Manager
 {
     public class InputManager : SingletonMonoBase<InputManager>
-    {
-        public string inputString;
-        public Vector3 mousePosition;
-        public static float Horizontal { get; private set; } = 0f;
-        public static float Vertical { get; private set; } = 0f;
-        public static bool IsTabDown { get; private set; } = false;
-        public static bool IsShiftTabDown { get; private set; } = false;
-        public static bool IsEnterDown { get; private set; } = false;
-        public static bool IsLeftClicked { get; private set; } = false;
-        public static bool IsRightClicked { get; private set; } = false;
+    { 
+        public string InputString { get; private set; } = string.Empty;
+        public Vector3 MousePosition { get; private set; } = Vector3.zero;
+        public float Horizontal { get; private set; } = float.NaN;
+        public float Vertical { get; private set; } = float.NaN;
+        public bool IsTabDown { get; private set; } = false;
+        public bool IsShiftTabDown { get; private set; } = false;
+        public bool IsEnterDown { get; private set; } = false;
+        public bool IsLeftClicked { get; private set; } = false;
+        public bool IsRightClicked { get; private set; } = false;
 
         private void Update()
         {
-            inputString = Input.inputString;
-            mousePosition = Input.mousePosition;
+            InputString = Input.inputString;
+            MousePosition = Input.mousePosition;
             Horizontal = Input.GetAxis("Horizontal");
             Vertical = Input.GetAxis("Vertical");
             IsTabDown = Input.GetKeyDown(KeyCode.Tab) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));

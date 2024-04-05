@@ -1,9 +1,8 @@
-using TetrisDefence.UI.Base;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-namespace DiceGame.UI
+namespace TetrisDefence.UI
 {
     public class UIWarningWindow : UIPopUpBase
     {
