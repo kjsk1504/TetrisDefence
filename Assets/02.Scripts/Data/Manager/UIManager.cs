@@ -7,19 +7,26 @@ using UnityEngine.EventSystems;
 
 namespace TetrisDefence.Data.Manager
 {
+    /// <summary>
+    /// UI(<see cref="UIBase"/>를 상속 받음)를 하나로 관리 <br><see cref="SingletonMonoBase{T}"/>를 상속 받음</br>
+    /// </summary>
     public class UIManager : SingletonMonoBase<UIManager>
     {
-        private Dictionary<Type, IUI> _uis = new Dictionary<Type, IUI>();
-        public List<IUIScreen> _screens = new List<IUIScreen>();
-        private LinkedList<IUIPopUp> _popUps = new LinkedList<IUIPopUp>();
-        private List<RaycastResult> _raycastResult = new List<RaycastResult>();
+        /// <summary> 모든 UI(<see cref="IUI"/>를 상속 받음)가 있는 해쉬테이블</summary>
+        private Dictionary<Type, IUI> _uis = new ();
+        /// <summary> 모든 Screen UI(<see cref="IUIScreen"/>을 상속 받음)가 있는 동적배열</summary>
+        private List<IUIScreen> _screens = new ();
+        /// <summary> 모든 PopUp UI(<see cref="IUIPopUp"/>을 상속 받음)가 있는 링크드 리스트</summary>
+        private LinkedList<IUIPopUp> _popUps = new ();
+        /// <summary> 캔버스의 레이케스트 결과들</summary>
+        private List<RaycastResult> _raycastResult = new ();
 
 
         private void Update()
         {
             if (_popUps.Count > 0)
             {
-                if (_popUps.Last.Value.inputActionEnable)
+                if (_popUps.Last.Value.InputActionEnable)
                     _popUps.Last.Value.InputAction();
             }
 
@@ -33,16 +40,18 @@ namespace TetrisDefence.Data.Manager
         }
 
         /// <summary>
-        /// UI 최초 등록
+        /// UI 최초 등록 <br><see cref="IUI"/>를 상속받는 UI가 Awake단계에서 자기 자신을 등록</br>
         /// </summary>
         /// <param name="ui"> 등록할 UI </param>
-        /// <exception cref="동일한 UI 가 씬에 두개 이상 존재함. 하나 지워야함"> 동일한 UI 가 씬에 두개 이상 존재함. 하나 지워야함. </exception>
+        /// <exception cref="동일한 UI 가 씬에 두개 이상 존재함. 하나 지워야함"> 동일한 UI가 씬에 두개 이상 존재 </exception>
         public void Register(IUI ui)
         {
             if (_uis.TryAdd(ui.GetType(), ui))
             {
                 if (ui is IUIScreen)
+                {
                     _screens.Add((IUIScreen)ui);
+                }
             }
             else
             {
@@ -51,11 +60,11 @@ namespace TetrisDefence.Data.Manager
         }
 
         /// <summary>
-        /// UI 인터페이스 검색
+        /// UI 검색 <br><see cref="IUI"/>를 상속 받는 UI의 타입을 통해 검색</br>
         /// </summary>
-        /// <typeparam name="T"> 가져오려는 UI 타입 </typeparam>
-        /// <returns> UI 인터페이스 </returns>
-        /// <exception cref="가져오려는 UI 가 존재하지 않음"> 가져오려는 UI가 존재하지 않음. </exception>
+        /// <typeparam name="T"> 가져오려는 UI의 타입 </typeparam>
+        /// <returns> UI 오브젝트 </returns>
+        /// <exception cref="가져오려는 UI 가 존재하지 않음"> 가져오려는 UI가 존재하지 않음 </exception>
         public T Get<T>()
             where T : IUI
         {
@@ -70,27 +79,28 @@ namespace TetrisDefence.Data.Manager
         }
 
         /// <summary>
-        /// 새로 보여줄 PopUp을 정렬순서 가장 뒤로 보냄.
+        /// 새로 보여줄 PopUp(<see cref="UIPopUpBase"/>을 상속 받음)을 정렬순서 가장 뒤로 보냄
         /// </summary>
         /// <param name="ui"> 새로 보여줄 PopUp </param>
         public void Push(IUIPopUp ui)
         {
             int sortingOrder = 1;
 
-            // 기존에 PopUp이 하나 이상 존재한다면
             if (_popUps.Last?.Value != null)
             {
-                _popUps.Last.Value.inputActionEnable = false; // 기존 PopUp의 입력처리 막음.
-                sortingOrder = _popUps.Last.Value.sortingOrder + 1; // 정렬 인덱스 기존 PopUp보다 크게
+                _popUps.Last.Value.InputActionEnable = false;
+                sortingOrder = _popUps.Last.Value.SortingOrder + 1;
             }
 
-            ui.inputActionEnable = true; // 새 PopUp의 입력처리 활성화.
-            ui.sortingOrder = sortingOrder; // 앞으로 가져오기
-            _popUps.Remove(ui); // 새 PopUp이 기존에 존재하던 PopUp이면 제거
-            _popUps.AddLast(ui); // 새 PopUp을 가장 뒤에 추가
+            ui.InputActionEnable = true;
+            ui.SortingOrder = sortingOrder;
+            _popUps.Remove(ui);
+            _popUps.AddLast(ui);
 
             if (sortingOrder > 256)
+            {
                 RearrangePopUpSortingOrders();
+            }
 
             if (_popUps.Count == 1)
             {
@@ -100,14 +110,14 @@ namespace TetrisDefence.Data.Manager
         }
 
         /// <summary>
-        /// PopUp을 제거, 이전 PopUp이 있다면 이전 PopUp의 입력처리 활성화.
+        /// PopUp(<see cref="UIPopUpBase"/>을 상속 받음)을 제거. 이전 PopUp이 있다면 이전 PopUp의 입력처리 활성화.
         /// </summary>
         /// <param name="ui"> 제거할 popup </param>
         public void Pop(IUIPopUp ui)
         {
             // 제거 하려는 Popup이 마지막이면서 이전 Popup이 있다면 이전 PopUp의 입력처리 활성화.
             if (_popUps.Count >= 2 && _popUps.Last.Value == ui)
-                _popUps.Last.Previous.Value.inputActionEnable = true;
+                _popUps.Last.Previous.Value.InputActionEnable = true;
 
             _popUps.Remove(ui); // 제거
 
@@ -119,8 +129,8 @@ namespace TetrisDefence.Data.Manager
         }
 
         /// <summary>
-        /// 현재 포인터 위치에서 다른 캔버스의 RaycastTarget이 있는지 검출
-        /// (마우스포인터가 현재 캔버스의 ui component 말고 다른 캔버스의 ui component 위에 있는지 검출)
+        /// 현재 포인터 위치에 다른 캔버스의 RaycastTarget이 있는지 검출
+        /// <br>(마우스포인터가 현재 캔버스의 <see langword="UI Componet"/> 말고 다른 캔버스의 <see langword="UI Componet"/> 위에 있는지 검출)</br>
         /// </summary>
         /// <param name="ui"> 현재 ui </param>
         /// <param name="other"> 다른 캔버스 ui </param>
@@ -141,13 +151,9 @@ namespace TetrisDefence.Data.Manager
                     hovered = _raycastResult[0].gameObject;
 
                     if (node.Value == ui)
+                    {
                         return false;
-                    // GraphicRaycaster로 캐스팅 할수있는 대상은
-                    // Canvas 하위에 있는 RaycastTarget 프로퍼티가 true인 UI Component들만 가능. 
-                    // 즉, _rayCastResult에 들어온 GameObject는 반드시 어떤 Canvas에 종속되어있는
-                    // UGUI Component임. 
-                    // 따라서 IUI 인터페이스는 해당 Component가 종속된 Canvas에 있으므로 
-                    // root까지 올라와서 IUI 인터페이스를 찾아야함.
+                    }
                     other = hovered.transform.root.GetComponent<IUI>();
                     return true;
                 }
@@ -162,7 +168,9 @@ namespace TetrisDefence.Data.Manager
                     hovered = _raycastResult[0].gameObject;
 
                     if (screen == ui)
+                    {
                         return false;
+                    }
 
                     other = hovered.transform.root.GetComponent<IUI>();
                     return true;
@@ -172,6 +180,10 @@ namespace TetrisDefence.Data.Manager
             return false;
         }
 
+        /// <summary>
+        /// 모든 UI(<see cref="_popUps"/>과 <see cref="_screens"/>)를 순회하면서 레이케스트 여부를 확인
+        /// </summary>
+        /// <returns></returns>
         public List<RaycastResult> RayCastAll()
         {
             _raycastResult.Clear();
@@ -189,12 +201,15 @@ namespace TetrisDefence.Data.Manager
             return _raycastResult;
         }
 
+        /// <summary>
+        /// PopUp UI(<see cref="UIPopUpBase"/>를 상속 받음)들의 SortingOrder를 다시 정렬함
+        /// </summary>
         private void RearrangePopUpSortingOrders()
         {
             int sortingOrder = 1;
             foreach (var popUp in _popUps)
             {
-                popUp.sortingOrder = sortingOrder++;
+                popUp.SortingOrder = sortingOrder++;
             }
         }
     }

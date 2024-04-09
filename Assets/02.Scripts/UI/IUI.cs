@@ -9,15 +9,15 @@ namespace TetrisDefence.UI
     /// </summary>
     public interface IUI
     {
-        /// <summary> Canvas의 SortOrder  </summary>
-        int sortingOrder { get; set; }
+        /// <summary> <see cref="UnityEngine.Canvas"/>의 SortOrder </summary>
+        int SortingOrder { get; set; }
         /// <summary> InputAction을 수행할지 여부 </summary>
-        bool inputActionEnable { get; set; }
+        bool InputActionEnable { get; set; }
         /// <summary>이 UI와 유저가 상호작용 할 때 실행할 내용 </summary>
         void InputAction();
 
         /// <summary>
-        /// 현재 Canvas에 GraphicsRaycaster 모듈로 RaycastTarget을 감지함
+        /// 현재 <see cref="UnityEngine.Canvas"/>의 <see cref="UnityEngine.UI.GraphicRaycaster"/> 모듈로 <see langword="RaycastTarget"/>을 감지함
         /// </summary>
         /// <param name="results"> 감지된 결과를 캐싱해 둘 리스트 </param>
         void Raycast(List<RaycastResult> results);

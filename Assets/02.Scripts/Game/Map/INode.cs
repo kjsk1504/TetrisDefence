@@ -8,15 +8,15 @@ namespace TetrisDefence.Game.Map
     public interface INode
     {
         /// <summary>
-        /// 노드의 인덱스 번호를 가져오는 함수
+        /// 노드의 인덱스 번호를 가져옴
         /// </summary>
         /// <returns> 인덱스 번호 </returns>
         int GetIndex();
 
         /// <summary>
-        /// 노드의 현재 위치를 가져오는 함수
+        /// 노드의 현재 위치를 가져옴
         /// </summary>
         /// <returns> 현재 위치 </returns>
-        Vector2 GetPosition();
+        Vector3 GetPosition();
     }
 }

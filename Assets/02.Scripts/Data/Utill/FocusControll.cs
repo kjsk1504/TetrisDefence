@@ -11,11 +11,11 @@ namespace TetrisDefence.Data.Utill
     public class FocusControll : MonoBehaviour
     {
         /// <summary> 선택 가능한 게임 오브젝트들 </summary>
-        [field: SerializeField] Selectable[] selectables;
+        [field: SerializeField] Selectable[] selectables = default;
         /// <summary> <see cref="Selectable"/> 중 선택된 인덱스 </summary>
-        private int _selectedIndex = 0;
+        private int _selectedIndex = default;
         /// <summary>  확인하는 비동기 함수 </summary>
-        private Coroutine _focusUpdate = null;
+        private Coroutine _focusUpdate = default;
 
 
         /// <summary>
@@ -27,12 +27,12 @@ namespace TetrisDefence.Data.Utill
         }
 
         /// <summary>
-        /// <see cref="SetDefFocus"/>를 실행해서 현재 활성화된 오브젝트를 찾고 <see cref="FocusUpdate"/>로 
+        /// <see cref="C_SetDefFocus"/>를 실행해서 현재 활성화된 오브젝트를 찾고 <see cref="C_FocusUpdate"/>로 
         /// </summary>
         private void OnEnable()
         {
-            StartCoroutine(SetDefFocus());
-            _focusUpdate = StartCoroutine(FocusUpdate());
+            StartCoroutine(C_SetDefFocus());
+            _focusUpdate = StartCoroutine(C_FocusUpdate());
         }
 
         /// <summary>
@@ -44,10 +44,10 @@ namespace TetrisDefence.Data.Utill
         }
 
         /// <summary>
-        /// 현재 활성화되어 있는 게임 오브젝트를 찾는 함수
+        /// 현재 활성화되어 있는 게임 오브젝트를 찾음
         /// </summary>
         /// <returns></returns>
-        private IEnumerator SetDefFocus()
+        private IEnumerator C_SetDefFocus()
         {
             yield return new WaitForEndOfFrame();
             for (int i = 0; i < selectables.Length; i++)
@@ -71,7 +71,7 @@ namespace TetrisDefence.Data.Utill
         /// 
         /// </summary>
         /// <returns></returns>
-        private IEnumerator FocusUpdate()
+        private IEnumerator C_FocusUpdate()
         {
             while (true)
             {
@@ -81,7 +81,7 @@ namespace TetrisDefence.Data.Utill
         }
 
         /// <summary>
-        /// <see langword="Tab"/>나 <see langword="Shift+Tab"/>이 눌렸는지 확인하는 함수.
+        /// <see langword="Tab"/>나 <see langword="Shift+Tab"/>이 눌렸는지 확인
         /// </summary>
         private void KeyDownBind()
         {

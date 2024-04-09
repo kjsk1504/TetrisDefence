@@ -25,13 +25,6 @@ namespace TetrisDefence.Data.Utill
             }
         }
 
-        /// <summary> 정적 인스턴스 필드 </summary>
-        private static T s_instance;
-
-
-        /// <summary>
-        /// 유니티 내에서 싱글톤이 하나만 존재하기 위해 다른 게임 오브젝트는 파괴한다.
-        /// </summary>
         protected virtual void Awake()
         {
             if (s_instance != null)
@@ -41,6 +34,11 @@ namespace TetrisDefence.Data.Utill
             }
 
             s_instance = (T)this;
+            DontDestroyOnLoad(gameObject);
         }
+
+        /// <summary> 정적 인스턴스 필드 </summary>
+        private static T s_instance;
+
     }
 }

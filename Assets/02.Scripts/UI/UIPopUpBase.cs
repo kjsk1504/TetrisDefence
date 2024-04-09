@@ -5,9 +5,15 @@ using UnityEngine.UI;
 
 namespace TetrisDefence.UI
 {
+    /// <summary>
+    /// 모든 PopUp UI의 부모 클래스
+    /// <br><see cref="UIBase"/>와 <see cref="IUIPopUp"/>를 상속 받음</br>
+    /// </summary>
     public class UIPopUpBase : UIBase, IUIPopUp
     {
-        [SerializeField] bool _hideWhenPointerDownOutside;
+        /// <summary> 바깥을 누르면 숨길지 여부 </summary>
+        [SerializeField] bool _hideWhenPointerDownOutside = true;
+
 
         public override void InputAction()
         {
@@ -15,12 +21,12 @@ namespace TetrisDefence.UI
 
             if (InputManager.Instance.IsLeftClicked || InputManager.Instance.IsRightClicked)
             {
-                // 유저가 다른 UI 와 상호작용하려고 시도했다면
                 if (UIManager.Instance.TryCastOther(this, out IUI other, out GameObject hovered))
                 {
-                    // 유저가 다른 Popup 을 선택했다면, 해당 Popup을 가장 앞에 보여주게 함.
                     if (other is IUIPopUp)
+                    {
                         other.Show();
+                    }
                 }
             }
         }
@@ -43,30 +49,32 @@ namespace TetrisDefence.UI
             canvas.enabled = false;
 
             if (_hideWhenPointerDownOutside)
+            {
                 CreateOutsidePanel();
+            }
         }
 
         /// <summary>
-        /// 바깥 마우스 누름 이벤트를 감지하여 현재 팝업을 숨기는 패널 생성
+        /// 마우스가 바깥을 누르면 현재 팝업을 숨기기 위해 패널 생성
         /// </summary>
         private void CreateOutsidePanel()
         {
-            GameObject panel = new GameObject("Outside"); // 빈 게임오브젝트 생성
-            panel.transform.SetParent(transform); // 현재 캔버스 하위에 게임오브젝트 종속
-            panel.transform.SetAsFirstSibling(); // 맨 앞 자식으로 순서 재설정
-            panel.AddComponent<Image>().color = new Color(0f, 0f, 0f, 0.4f); // 빈 게임오브젝트에 이미지 추가 후 색 설정
+            GameObject panel = new GameObject("Outside");
+            panel.transform.SetParent(transform);
+            panel.transform.SetAsFirstSibling();
+            panel.AddComponent<Image>().color = new Color(0f, 0f, 0f, 0.4f); // 투명한 하얀색
 
-            RectTransform rectTransform = (RectTransform)panel.transform; // UI 컴포넌트 추가되면 transform은 RectTransform으로 바뀜
-            rectTransform.anchorMin = Vector2.zero; // 앵커프리셋 앵커 최솟값 0, 0
-            rectTransform.anchorMax = Vector2.one; // 앵커프리셋 앵커 최댓값 1, 1
-            rectTransform.pivot = new Vector2(0.5f, 0.5f); // 앵커프리셋 피봇 0.5, 0.5
+            RectTransform rectTransform = (RectTransform)panel.transform;
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
             rectTransform.localScale = Vector3.one; // 스케일 1, 1, 1 (처음 생성시 0, 0, 0)
 
-            EventTrigger trigger = panel.AddComponent<EventTrigger>(); // 빈 게임오브젝트에 이벤트트리거 추가
-            EventTrigger.Entry entry = new EventTrigger.Entry(); // 트리거 진입점 생성
-            entry.eventID = EventTriggerType.PointerDown; // 트리거 진입 타입 설정 : 마우스 누름
-            entry.callback.AddListener(eventData => Hide()); // 트리거 진입되었을 때 팝업 숨김 콜백 등록
-            trigger.triggers.Add(entry); // 생성한 트리거 진입점을 추가
+            EventTrigger trigger = panel.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerDown;
+            entry.callback.AddListener(eventData => Hide());
+            trigger.triggers.Add(entry);
         }
     }
 }

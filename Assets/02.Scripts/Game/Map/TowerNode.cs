@@ -3,7 +3,8 @@ using UnityEngine;
 namespace TetrisDefence.Game.Map
 {
     /// <summary>
-    /// 타워 노드 <br>노드 베이스(<see cref="NodeBase"/>)를 상속받음</br>
+    /// 타워 노드
+    /// <br>노드 베이스(<see cref="NodeBase"/>)를 상속받음</br>
     /// </summary>
     public class TowerNode : NodeBase
     {

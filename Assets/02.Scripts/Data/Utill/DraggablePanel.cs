@@ -12,9 +12,9 @@ namespace TetrisDefence.Data.Utill
         /// <summary> 닫았다 열때마다 위치를 초기화할지 여부 </summary>
         [SerializeField] bool _resetPositionOnEnabled = true;
         /// <summary> 패널의 트랜스폼 컴포넌트 </summary>
-        private RectTransform _rectTransform;
+        private RectTransform _rectTransform = default;
         /// <summary> 패널의 시작 위치 </summary>
-        private Vector2 _origin;
+        private Vector2 _origin = default;
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace TetrisDefence.Data.Utill
         }
 
         /// <summary>
-        /// 드래그 했을때 패널의 위치를 마우스 포인터의 위치와 같게 하는 함수
+        /// 드래그 했을때 패널의 위치를 마우스 포인터의 위치와 같게 함
         /// </summary>
         /// <param name="eventData"> 마우스 포인터의 이벤트 데이터 </param>
         public void OnDrag(PointerEventData eventData)

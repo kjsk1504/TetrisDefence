@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1460990393575827161}
   - component: {fileID: 4580103146782440842}
   - component: {fileID: 983022285604299852}
+  - component: {fileID: 3424848206399712974}
   m_Layer: 0
   m_Name: RoadNode
   m_TagString: Untagged
@@ -85,3 +86,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3424848206399712974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110372505914164742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142bd1c61d566b34e984060a0ed18920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inlet: {x: 0, y: 0, z: 0}
+  center: {x: 0, y: 0, z: 0}
+  outlet: {x: 0, y: 0, z: 0}

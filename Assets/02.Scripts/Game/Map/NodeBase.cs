@@ -4,7 +4,8 @@ using UnityEngine;
 namespace TetrisDefence.Game.Map
 {
     /// <summary>
-    /// 노드 베이스 <br>유니티의 <see cref="MonoBehaviour"/>와 <see cref="INode"/>, <see cref="IComparable{T}"/>를 상속 받음</br>
+    /// 노드 베이스
+    /// <br>유니티의 <see cref="MonoBehaviour"/>와 <see cref="INode"/>, <see cref="IComparable{T}"/>를 상속 받음</br>
     /// <para>도로 노드(<see cref = "RoadNode"/>)와 타워 노드(<see cref = "TowerNode"/>)의 기본이 되는 부모 클래스</para>
     /// </summary>
     public class NodeBase : MonoBehaviour, INode, IComparable<NodeBase>
@@ -12,7 +13,7 @@ namespace TetrisDefence.Game.Map
         /// <summary> 노드를 구별하기 위한 인덱스 번호 </summary>
         public int NodeIndex { get; private set; } = default;
         /// <summary> 노드의 위치 좌표 </summary>
-        public Vector2 NodePosition { get; private set; } = default;
+        public Vector3 NodePosition { get; private set; } = default;
 
 
         /// <summary> <see cref = "NodeIndex"/>를 <seealso cref="Array.Sort"/>하기 위해 구현한 <see cref = "IComparable{T}"/>의 필수 함수 </summary>
@@ -51,7 +52,7 @@ namespace TetrisDefence.Game.Map
             }
         }
 
-        public Vector2 GetPosition()
+        public Vector3 GetPosition()
         {
             return gameObject.transform.position;
         }
@@ -63,9 +64,9 @@ namespace TetrisDefence.Game.Map
         /// </summary>
         protected virtual void Awake()
         {
+            NodeIndex = GetIndex();
             MapOfNodes.Register(this);
 
-            NodeIndex = GetIndex();
             NodePosition = GetPosition();
         }
     }

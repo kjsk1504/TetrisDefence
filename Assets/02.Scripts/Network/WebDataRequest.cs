@@ -5,14 +5,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Debug = UnityEngine.Debug;
 
-public class WebUserDataRequest : SingletonMonoBase<WebUserDataRequest>
+/// <summary>
+/// 웹서버에 데이터를 저장이나 검색 요청
+/// <br><see cref="SingletonBase{T}"/>를 상속 받음</br>
+/// </summary>
+public class WebDataRequest : SingletonMonoBase<WebDataRequest>
 {
-    private Process process;
+    /// <summary> 웹서버가 실행될 프로세스 </summary>
+    private Process process = default;
 
-    // ip 주소.
+    /// <summary> ip 주소 (기본값: localhost) </summary>
     [SerializeField] string _url = "localhost";
 
-    // 포트 정보.
+    /// <summary> 포트 정보 (기본값: 3000) </summary>
     [SerializeField] string _port = "3000";
 
 
@@ -29,6 +34,11 @@ public class WebUserDataRequest : SingletonMonoBase<WebUserDataRequest>
         Process.Start(processInfo);
     }
 
+    /// <summary>
+    /// <see langword="URL"/>을 만듬
+    /// </summary>
+    /// <param name="path"> 추가할 경로 </param>
+    /// <returns> 합쳐진 <see langword="URL"/> </returns>
     private string CreateRequestURL(string path)
     {
         string requestURL = $"{_url}:{_port}/{path}";
@@ -41,28 +51,36 @@ public class WebUserDataRequest : SingletonMonoBase<WebUserDataRequest>
         return requestURL;
     }
 
+    /// <summary>
+    /// 웹서버와 연결되었는지 확인
+    /// </summary>
     public void ConnectionCheck()
     {
         StartCoroutine(RequestGet($"{_url}:{_port}"));
     }
 
-    // Get 버튼 눌리면 실행할 함수.
+    /// <summary>
+    /// Get요청하는 버튼이 눌리면 실행
+    /// </summary>
+    /// <param name="path"> 요청 경로 </param>
     public void OnGetButtonClicked(string path)
     {
         StartCoroutine(RequestGet(CreateRequestURL(path)));
     }
 
+    /// <summary>
+    /// 웹서버에 Get요청
+    /// </summary>
+    /// <param name="requestURL"> 요청 <see langword="URL"/> </param>
+    /// <returns> 코루틴용 </returns>
     IEnumerator RequestGet(string requestURL)
     {
         UnityWebRequest request;
 
-        // 서버에 요청하는 객체 생성.
         request = UnityWebRequest.Get(requestURL);
 
-        // 서버에서 응답이 오기까지 대기 (비동기).
         yield return request.SendWebRequest();
 
-        // 다른 처리.
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log(request.downloadHandler.text);
@@ -73,27 +91,34 @@ public class WebUserDataRequest : SingletonMonoBase<WebUserDataRequest>
         }
     }
 
-    // Post 버튼 눌리면 실행할 함수.
+    /// <summary>
+    /// Post요청하는 버튼 눌리면 실행
+    /// </summary>
+    /// <param name="path"> 요청 경로 </param>
+    /// <param name="id"> 요청 ID </param>
+    /// <param name="pw"> 요청 PW </param>
     public void OnPostButtonClicked(string path, string id, string pw)
     {
         StartCoroutine(RequestPost(CreateRequestURL(path), id, pw));
     }
 
-    // Post 요청 함수.
+    /// <summary>
+    /// 웹서버에 Post 요청
+    /// </summary>
+    /// <param name="requestURL"> 요청 <see langword="URL"/> </param>
+    /// <param name="id"> 요청 ID</param>
+    /// <param name="pw"> 요청 PW</param>
+    /// <returns> 코루틴용 </returns>
     IEnumerator RequestPost(string requestURL, string id, string pw)
     {
-        // 폼 객체 생성.
         WWWForm form = new WWWForm();
         form.AddField("id", id);
         form.AddField("pw", pw);
 
-        // Post 요청 객체 생성.
         UnityWebRequest request = UnityWebRequest.Post(requestURL, form);
 
-        // Post 요청 전달.
         yield return request.SendWebRequest();
 
-        // 결과 확인.
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log(request.downloadHandler.text);

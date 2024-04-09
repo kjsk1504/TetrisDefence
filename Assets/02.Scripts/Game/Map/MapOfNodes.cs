@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System;
 
 namespace TetrisDefence.Game.Map
 {
@@ -8,32 +7,32 @@ namespace TetrisDefence.Game.Map
     /// </summary>
     public static class MapOfNodes
     {
-        /// <summary>  </summary>
-        public static List<RoadNode> roads = new();
-        /// <summary>  </summary>
-        public static List<TowerNode> towers = new();
-        /// <summary>  </summary>
+        /// <summary> 좌표(12x12)에 해당하는 소켓 </summary>
         public static Socket[,] sockets = new Socket[12, 12];
+        /// <summary> 모든 도로 노드의 배열 </summary>
+        public static RoadNode[] roads = new RoadNode[73];
+        /// <summary> 모든 타워 노드의 배열 </summary>
+        public static TowerNode[] towers = new TowerNode[75];
 
 
         /// <summary>
-        /// 노드 베이스(<see cref="NodeBase"/>)를 등록하는 함수
+        /// 노드 베이스(<see cref="NodeBase"/>)를 등록
         /// </summary>
         /// <param name="node"> 등록할 노드베이스 (<see cref="RoadNode"/>, <see cref="TowerNode"/>) </param>
         public static void Register(NodeBase node)
         {
             if (node is RoadNode)
             {
-                roads.Add((RoadNode)node);
+                roads[node.NodeIndex - 1] = (RoadNode)node;
             }
             else if (node is TowerNode)
             {
-                towers.Add((TowerNode)node);
+                towers[node.NodeIndex - 1] = (TowerNode)node;
             }
         }
 
         /// <summary>
-        /// 소켓(<see cref="Socket"/>)을 등록하는 함수
+        /// 소켓(<see cref="Socket"/>)을 등록
         /// </summary>
         /// <param name="socket"> 등록할 소켓 <br>소켓의 게임 오브젝트는 이름이 (00, 00)의 형식으로 끝나야함</br> </param>
         public static void Register(Socket socket)

@@ -1,18 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TetrisDefence.Game.Map
 {
     /// <summary>
-    /// 맵의 소켓 <br><see cref="MonoBehaviour"/>를 상속 받음</br>
+    /// 맵의 소켓
+    /// <br><see cref="MonoBehaviour"/>를 상속 받음</br>
     /// </summary>
     public class Socket : MonoBehaviour
     {
-        /// <summary>
-        /// 맵 정보(<see cref="MapOfNodes"/>)에 등록
-        /// </summary>
+        private List<RoadNode> _roadNodes = default;
+        private TowerNode _towerNode = default;
+
+
         private void Awake()
         {
             MapOfNodes.Register(this);
+            _roadNodes = new List<RoadNode> (GetComponentsInChildren<RoadNode>());
+            _towerNode = GetComponentInChildren<TowerNode>();
         }
     }
 }
