@@ -1,53 +1,98 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TetrisDefence.Data.Manager;
+using TetrisDefence.Game.Enemy;
 using UnityEngine;
 
 namespace TetrisDefence.Game
 {
-    public class TowerController : MonoBehaviour
+    public class TowerController : PoolBase
     {
         public int TowerIndex { get; private set; } = default;
-        public GameObject bulletPrefab;
+        public Bullet bulletPrefab;
+        public GameObject muzzle;
+        public Collider AttackRange;
         private int _tier = default;
         private int[] _tetris = new int[7];
+        private float _attackSpeed = 1;
+        private float _attackRange = 8;
+        private int _attackNumber = 1;
+        private float _attackDelay;
+        public List<EnemyBase> targets;
+        public List<Bullet> bullets;
+
 
         private void Awake()
         {
             TowerManager.Instance.Register(this);
             TowerIndex = TowerManager.Instance.towers.Count + 1;
-
-            PoolManager.Instance.CreatePool
-            (
-                Item.Bullet,
-                () =>
-                {
-                    return Instantiate(bulletPrefab.GetComponent<Bullet>());
-                },
-                (bullet) =>
-                {
-                    Bullet bullet1 = (Bullet)bullet;
-                    bullet1.transform.SetParent(transform);
-                    bullet1.transform.localPosition = Vector3.zero;
-                },
-                (bullet) =>
-                {
-                    Bullet bullet1 = (Bullet)bullet;
-                    bullet1.transform.SetParent(PoolManager.Instance.pooledObject.transform.GetChild((int)Item.Bullet));
-                    bullet1.gameObject.SetActive(false);
-                }
-            );
+            AttackRange.transform.localScale = Vector3.one * _attackRange;
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            Bullet[] b = new Bullet[10];
-            for (int ix = 0; ix < 10; ix++)
+            transform.up = Vector3.up;
+            transform.localPosition = new Vector3(0, 0, -0.4f);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var target = other.gameObject.GetComponent<EnemyBase>();
+
+            if (!targets.Contains(target))
             {
-                b[ix] = (Bullet)PoolManager.Instance.pooledItems[Item.Bullet].Get();
+                targets.Add(target);
             }
-            for (int ix = 0; ix < 10; ix++)
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (targets.Contains(other.gameObject.GetComponent<EnemyBase>()))
             {
-                PoolManager.Instance.pooledItems[Item.Bullet].Release(b[ix]);
+                Vector3 direction = targets[0].transform.position - transform.position;
+                direction.z = 0;
+                transform.up = direction;
             }
+
+            if (_attackDelay < _attackSpeed)
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            var target = other.gameObject.GetComponent<EnemyBase>();
+
+            if (targets.Contains(target))
+            {
+                targets.Remove(target);
+            }
+
+            if (targets.Count == 0)
+            {
+                transform.up = Vector3.up;
+            }
+        }
+
+        private IEnumerator C_Shoot(int num)
+        {
+            Bullet[] bullets = PoolManager.Instance.GetBullets(num);
+
+            for (int ix = 0; ix < num; ix++)
+            {
+
+                foreach (var bullet in bullets)
+                {
+                    bullet.gameObject.SetActive(false);
+                    bullet.transform.SetParent(transform);
+                    bullet.transform.position = muzzle.transform.position;
+                    bullet.transform.rotation = transform.rotation;
+                }
+
+                print(ix);
+                bullets[ix].gameObject.SetActive(true);
+                yield return new WaitForSecondsRealtime(1.0f);
+            }
+            
         }
     }
 }

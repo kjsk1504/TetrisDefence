@@ -1,77 +1,111 @@
 using System;
 using System.Collections;
+using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Map;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace TetrisDefence.Game.Enemy
 {
-    [Serializable]
-    public class EnemyBase : MonoBehaviour, IEnemy
+    public class EnemyBase : PoolBase
     {
-        public int currentIndex = default;
-        public GameObject Child = null;
+        public int currentIndex;
+        public EnemyBase Child;
+        protected float _movePercent;
         private float _hp = default;
-		private float _moveSpeed = 1.0f;
-        private float _movePercent = 0.0f;
-        
+		public float moveSpeed = 1.0f;
 
-        public void Move()
+
+        public override void Born()
         {
-            StartCoroutine(C_Move(currentIndex));
-        }
-        public void Born()
-        {
-            throw new NotImplementedException();
+            base.Born();
+
+            Move();
         }
 
-        public void Death()
+        public override void Death()
         {
-            throw new NotImplementedException();
+            base.Death();
+
+            if ((int)_itemIndex < 4 || currentIndex >= MapOfNodes.roads.Length)
+            {
+                return;
+            }
+
+            var child = PoolManager.Instance.GetEnemy(_itemIndex - 1);
+
+            child.transform.SetParent(transform.parent);
+            child.transform.position = transform.position;
+            child.transform.rotation = transform.rotation;
+            child.currentIndex = currentIndex;
+            child._movePercent = _movePercent;
+            child.gameObject.SetActive(true);
         }
 
         private void OnEnable()
         {
             Born();
+        }
+
+        public void Move()
+        {
+            if (currentIndex >= MapOfNodes.roads.Length)
+            {
+                Death();
+            }
+            else if (_movePercent < 0.5f)
+            {
+                StartCoroutine(C_MoveFirstHalf());
+            }
+            else
+            {
+                StartCoroutine(C_RotationByRoad());
+                StartCoroutine(C_MoveLastHalf());
+            }
+        }
+
+        private IEnumerator C_MoveFirstHalf()
+        {
+            while (_movePercent < 0.5f)
+            {
+                transform.position = Vector3.Lerp(MapOfNodes.roads[currentIndex].inlet,
+                                                  MapOfNodes.roads[currentIndex].center,
+                                                  (_movePercent - 0.0f) / (0.5f - 0.0f));
+                _movePercent += Time.deltaTime * moveSpeed;
+                yield return null;
+            }
+
             Move();
         }
 
-        private void OnDisable()
+        private IEnumerator C_MoveLastHalf()
         {
-            Death();
+            while (_movePercent >= 0.5f && _movePercent < 1.0f)
+            {
+                transform.position = Vector3.Lerp(MapOfNodes.roads[currentIndex].center,
+                                                  MapOfNodes.roads[currentIndex].outlet,
+                                                  (_movePercent - 0.5f) / (1.0f - 0.5f));
+                _movePercent += Time.deltaTime * moveSpeed;
+                yield return null;
+            }
+
+            _movePercent -= 1.0f;
+            currentIndex += 1;
+            
+            Move();
         }
 
-        private IEnumerator C_Move(int index)
+        private IEnumerator C_RotationByRoad()
         {
-            for (int ix = index; ix < MapOfNodes.roads.Length; ix++)
-            {
-                float t = 0;
-                while (_movePercent < 0.5f)
-                {
-                    transform.position = Vector3.Lerp(MapOfNodes.roads[ix].inlet,
-                                                      MapOfNodes.roads[ix].center,
-                                                      t);
-                    t += Time.deltaTime * _moveSpeed;
-                    _movePercent = t / 2;
-                    yield return null;
-                }
-                transform.position = MapOfNodes.roads[ix].center;
-                t = 0;
+            float t = 0;
 
-                while (_movePercent >= 0.5f && _movePercent < 1.0f)
-                {
-                    transform.position = Vector3.Lerp(MapOfNodes.roads[ix].center,
-                                                      MapOfNodes.roads[ix].outlet,
-                                                      t);
-                    t += Time.deltaTime * _moveSpeed;
-                    _movePercent = 0.5f + t / 2;
-                    yield return null;
-                }
-                transform.position = MapOfNodes.roads[ix].outlet;        
-                
-                currentIndex = ix + 1;
-                _movePercent = 0.0f;
+            while (t < 1)
+            {
+                Quaternion.Slerp(transform.rotation, MapOfNodes.roads[currentIndex].transform.rotation, t);
+                t += Time.deltaTime * moveSpeed;
+                yield return null;
             }
+
+            transform.rotation = MapOfNodes.roads[currentIndex].transform.rotation;
         }
     }
 }

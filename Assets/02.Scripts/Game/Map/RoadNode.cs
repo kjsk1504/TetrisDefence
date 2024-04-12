@@ -23,6 +23,8 @@ namespace TetrisDefence.Game.Map
         {
             base.Awake();
 
+            MapOfNodes.Register(this);
+
             inlet = NodePosition;
             outlet = NodePosition;
             center = NodePosition;

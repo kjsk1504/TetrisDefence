@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace TetrisDefence.Game.Map
 {
     /// <summary>
@@ -19,16 +17,28 @@ namespace TetrisDefence.Game.Map
         /// 노드 베이스(<see cref="NodeBase"/>)를 등록
         /// </summary>
         /// <param name="node"> 등록할 노드베이스 (<see cref="RoadNode"/>, <see cref="TowerNode"/>) </param>
-        public static void Register(NodeBase node)
+        public static void Register(RoadNode node)
         {
-            if (node is RoadNode)
+            if (roads[node.NodeIndex - 1])
             {
-                roads[node.NodeIndex - 1] = (RoadNode)node;
+                throw new System.Exception($"[MapOfNodes]: RoadNode NodeIndex가 겹침 ({node.NodeIndex})\n{string.Join(",", System.Array.ConvertAll(roads, x => { if (!x) { return ""; } return x.name; }))}");
             }
-            else if (node is TowerNode)
+
+            roads[node.NodeIndex - 1] = node;
+        }
+
+        /// <summary>
+        /// 노드 베이스(<see cref="NodeBase"/>)를 등록
+        /// </summary>
+        /// <param name="node"> 등록할 노드베이스 (<see cref="RoadNode"/>, <see cref="TowerNode"/>) </param>
+        public static void Register(TowerNode node)
+        {
+            if (towers[node.NodeIndex - 1])
             {
-                towers[node.NodeIndex - 1] = (TowerNode)node;
+                throw new System.Exception($"[MapOfNodes]: TowerNode NodeIndex가 겹침 ({node.NodeIndex})\n{string.Join(",", System.Array.ConvertAll(towers, x => { if (!x) { return ""; } return x.name; }))}");
             }
+
+            towers[node.NodeIndex - 1] = node;
         }
 
         /// <summary>

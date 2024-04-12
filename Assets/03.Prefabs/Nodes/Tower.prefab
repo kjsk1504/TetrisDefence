@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411584256364546575}
+  - component: {fileID: -1247608247743928943}
   - component: {fileID: -921868627739120428}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +35,33 @@ Transform:
   - {fileID: 2424605155938308073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &-1247608247743928943
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503496952613155644}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 62
+  m_CollisionDetection: 0
 --- !u!114 &-921868627739120428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,7 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdb75a1acb5d254494ab5644606fe19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6408255868015099578, guid: 41e5831ce00ee344689d7e71523f841f, type: 3}
+  bulletPrefab: {fileID: 4831694325685892778, guid: 41e5831ce00ee344689d7e71523f841f, type: 3}
+  muzzle: {fileID: 8300177839003338257}
+  AttackRange: {fileID: 5783588252755370897}
+  targets: []
 --- !u!1 &7665814718026361576
 GameObject:
   m_ObjectHideFlags: 0

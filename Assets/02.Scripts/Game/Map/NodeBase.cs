@@ -11,7 +11,7 @@ namespace TetrisDefence.Game.Map
     public class NodeBase : MonoBehaviour, INode, IComparable<NodeBase>
     {
         /// <summary> 노드를 구별하기 위한 인덱스 번호 </summary>
-        public int NodeIndex { get; private set; } = default;
+        public int NodeIndex;
         /// <summary> 노드의 위치 좌표 </summary>
         public Vector3 NodePosition { get; private set; } = default;
 
@@ -65,8 +65,6 @@ namespace TetrisDefence.Game.Map
         protected virtual void Awake()
         {
             NodeIndex = GetIndex();
-            MapOfNodes.Register(this);
-
             NodePosition = GetPosition();
         }
     }

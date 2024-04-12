@@ -12,8 +12,9 @@ namespace TetrisDefence.Game.Map
         {
             base.Awake();
 
-            inlet.y = NodePosition.y - 1;
-            outlet.y = NodePosition.y + 1;
+            var _up = transform.up;
+            inlet = NodePosition - _up;
+            outlet = NodePosition + _up;
         }
     }
 }

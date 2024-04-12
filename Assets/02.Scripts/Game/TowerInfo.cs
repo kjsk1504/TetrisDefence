@@ -13,6 +13,8 @@ namespace TetrisDefence.Game
         public float AttackSpeed { get; set; } = 1.0f;
         public float AttackRange { get; set; } = 4.0f;
 
+        public event Action OnUpdateTower;
+
         private int _minoI = default;
         private int _minoT = default;
         private int _minoJ = default;
@@ -30,7 +32,8 @@ namespace TetrisDefence.Game
             DotTime += _minoS;
             AttackSpeed += _minoZ;
             AttackRange *= _minoO;
+
+            OnUpdateTower?.Invoke();
         }
-        
     }
 }

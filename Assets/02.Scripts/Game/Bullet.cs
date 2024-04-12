@@ -1,32 +1,39 @@
-using TetrisDefence.Data.Manager;
+using System.Collections;
+using TetrisDefence.Data.Utill;
+using TetrisDefence.Game.Enemy;
 using UnityEngine;
 
 namespace TetrisDefence.Game
 {
-    public class Bullet : MonoBehaviour, IPoolItem
+    public class Bullet : PoolBase
     {
-        private float bulletSpeed = 1.0f;
-        private float bulletTime = 10.0f;
+        private float _bulletSpeed = 1.0f;
+        private float _bulletTime = 10.0f;
 
-
-        private void Awake()
-        {
-
-        }
 
         private void OnEnable()
         {
-            
+            base.Born();
+
+            Invoke(nameof(Death), _bulletTime);
         }
 
-        private void OnDisable()
+        private void Update()
         {
-
+            transform.position = transform.position + transform.up * _bulletSpeed * Time.deltaTime;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            
+            if (TryGetComponent(out EnemyBase enemy))
+            {
+                enemy.Death();
+                Death();
+            }
+            else
+            {
+                throw new System.Exception("[Bullet]: somthing is wrong");
+            }
         }
     }
 }

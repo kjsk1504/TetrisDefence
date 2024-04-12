@@ -7,11 +7,13 @@ namespace TetrisDefence.Data.Manager
     /// 키보드와 마우스 입력을 모두 하나로 관리 <br><see cref="SingletonMonoBase{T}"/>를 상속 받음</br>
     /// </summary>
     public class InputManager : SingletonMonoBase<InputManager>
-    { 
+    {
         /// <summary> 매프레임마다 키보드로 입력한 키 </summary>
         public string InputString { get; private set; } = default;
         /// <summary> 현재 픽셀 좌표상의 마우스 위치 </summary>
         public Vector3 MousePosition { get; private set; } = default;
+        /// <summary> 키보드의 아무 키가 눌렸는지 여부 </summary>
+        public bool IsAnyKeyDown { get; private set; } = default;
         /// <summary> 수평 방향 입력 </summary>
         public float Horizontal { get; private set; } = default;
         /// <summary> 수직 방향 입력 </summary>
@@ -26,11 +28,14 @@ namespace TetrisDefence.Data.Manager
         public bool IsLeftClicked { get; private set; } = default;
         /// <summary> 마우스 오른쪽 버튼이 눌렸는지 여부 </summary>
         public bool IsRightClicked { get; private set; } = default;
+        /// <summary> 키보드 <see cref="KeyCode.Escape"/>키가 눌렸는지 여부 </summary>
+        public bool IsESCDown { get; private set; } = default;
 
         private void Update()
         {
             InputString = Input.inputString;
             MousePosition = Input.mousePosition;
+            IsAnyKeyDown = Input.anyKeyDown;
             Horizontal = Input.GetAxis("Horizontal");
             Vertical = Input.GetAxis("Vertical");
             IsTabDown = Input.GetKeyDown(KeyCode.Tab) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
@@ -38,6 +43,7 @@ namespace TetrisDefence.Data.Manager
             IsEnterDown = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
             IsLeftClicked = Input.GetMouseButtonDown(0);
             IsRightClicked = Input.GetMouseButtonDown(1);
+            IsESCDown = Input.GetKeyDown(KeyCode.Escape);
         }
     }
 }

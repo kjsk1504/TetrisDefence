@@ -16,7 +16,7 @@ namespace TetrisDefence.Game.Map
         {
             base.Awake();
 
-
+            MapOfNodes.Register(this);
         }
     }
 }
