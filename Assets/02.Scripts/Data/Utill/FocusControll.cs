@@ -85,11 +85,11 @@ namespace TetrisDefence.Data.Utill
         /// </summary>
         private void KeyDownBind()
         {
-            if (InputManager.Instance.IsShiftTabDown)
+            if (InputManager.Instance.IsShiftTabKeyDown)
             {
                 MoveBackward();
             }
-            else if (InputManager.Instance.IsTabDown)
+            else if (InputManager.Instance.IsTabKeyDown)
             {
                 MoveForward();
             }

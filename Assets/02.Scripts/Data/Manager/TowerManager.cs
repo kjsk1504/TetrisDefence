@@ -1,17 +1,62 @@
 using System.Collections.Generic;
 using TetrisDefence.Data.Utill;
 using TetrisDefence.Game;
+using TetrisDefence.UI;
 using UnityEngine;
 
 namespace TetrisDefence.Data.Manager
 {
     public class TowerManager : SingletonMonoBase<TowerManager>
     {
-        public List<TowerController> towers = new ();
+        [SerializeField] private List<TowerController> _towers = new ();
+        private UITowerInformation _towerInfoUI;
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        private void Start()
+        {
+            _towerInfoUI = UIManager.Instance.Get<UITowerInformation>();
+        }
 
         public void Register(TowerController tower)
         {
-            towers.Add(tower);
+            _towers.Add(tower);
+            tower.TowerIndex = _towers.Count;
+        }
+
+        public void Unregister(TowerController tower)
+        {
+            int towerindex = _towers.IndexOf(tower);
+            if (_towers.Remove(tower))
+            {
+                for(int ix = towerindex; ix < _towers.Count; ix++)
+                {
+                    _towers[ix].TowerIndex = ix + 1;
+                }
+            }
+            else
+            {
+                throw new System.Exception("[TowerManager]: 삭제하려는 타워가 없습니다.");
+            }
+        }
+
+        public void TowerSelection(TowerInfo selected)
+        {
+            _towerInfoUI.Hide();
+            _towerInfoUI.TowerInfo = selected;
+            _towerInfoUI.Show();
+        }
+
+        public void ShootAllTowers()
+        {
+            foreach(var tower in _towers)
+            {
+                tower.Shoot();
+            }
         }
     }
 }

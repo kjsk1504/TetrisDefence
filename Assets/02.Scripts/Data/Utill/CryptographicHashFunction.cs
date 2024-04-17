@@ -5,16 +5,15 @@ namespace TetrisDefence.Data.Utill
 {
     /// <summary>
     /// 암호학적 해시 함수 (<see cref="MD5"/>, <see cref="SHA256"/>, <see cref="HMACSHA256"/>)
-    /// <br><see cref="SingletonBase{T}"/>을 상속 받음</br>
     /// </summary>
-    public class CryptographicHashFunction : SingletonBase<CryptographicHashFunction>
+    public static class CryptographicHashFunction
     {
         /// <summary>
         /// 입력 문자열의 <see cref="MD5"/> 해시 값을 계산
         /// </summary>
         /// <param name="inputString"> 입력 문자열 </param>
         /// <returns> 해시 값 </returns>
-        public string CalculateMD5(string inputString)
+        public static string CalculateMD5(string inputString)
         {
             using (MD5 md5 = MD5.Create())
             {
@@ -37,7 +36,7 @@ namespace TetrisDefence.Data.Utill
         /// </summary>
         /// <param name="inputString"> 입력 문자열 </param>
         /// <returns> 해시 값</returns>
-        public string CalculateSHA256(string inputString)
+        public static string CalculateSHA256(string inputString)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -61,7 +60,7 @@ namespace TetrisDefence.Data.Utill
         /// <param name="inputString"> 입력 문자열 </param>
         /// <param name="secretKey"> 비밀 키 </param>
         /// <returns> 해시 값</returns>
-        public string CalculateHMACSHA256(string inputString, string secretKey)
+        public static string CalculateHMACSHA256(string inputString, string secretKey)
         {
             byte[] keyBytes = Encoding.UTF8.GetBytes(secretKey);
             using (HMACSHA256 hmac = new HMACSHA256(keyBytes))

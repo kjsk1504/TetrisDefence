@@ -1,39 +1,62 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Enemy;
+using TetrisDefence.Game.Map;
 using UnityEngine;
 
 namespace TetrisDefence.Game
 {
     public class TowerController : PoolBase
     {
-        public int TowerIndex { get; private set; } = default;
+        [field: SerializeField] public int TowerIndex { get; set; } = default;
+        [field: SerializeField] public int[] TowerLocation { get; private set; } = new int[2];
+        [field: SerializeField] public int Tier { get; private set; } = default;
+
         public Bullet bulletPrefab;
+        public GameObject barrel;
         public GameObject muzzle;
-        public Collider AttackRange;
-        private int _tier = default;
-        private int[] _tetris = new int[7];
-        private float _attackSpeed = 1;
-        private float _attackRange = 8;
-        private int _attackNumber = 1;
-        private float _attackDelay;
+        public Collider attackRange;
         public List<EnemyBase> targets;
         public List<Bullet> bullets;
+
+        private TowerInfo _towerinfo = new ();
+        private float _attackDelay = 0;
 
 
         private void Awake()
         {
-            TowerManager.Instance.Register(this);
-            TowerIndex = TowerManager.Instance.towers.Count + 1;
-            AttackRange.transform.localScale = Vector3.one * _attackRange;
+            _towerinfo = new TowerInfo();
+
+            if (!attackRange)
+            {
+                attackRange = GetComponentInChildren<Collider> ();
+            }
+
+            attackRange.transform.localScale = Vector3.one * _towerinfo.AttackRange;
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            transform.up = Vector3.up;
-            transform.localPosition = new Vector3(0, 0, -0.4f);
+            TowerLocation = transform.GetComponentInParent<NodeSocket>().Location;
+            _towerinfo = new TowerInfo(TowerIndex, TowerLocation, Tier, new int[7]);
+        }
+
+        private void Update()
+        {
+            _attackDelay += Time.deltaTime;
+        }
+
+        private void FixedUpdate()
+        {
+            var bulletArray = bullets.ToArray();
+            foreach (var bullet in bulletArray)
+            {
+                if (Mathf.Pow(bullet.transform.localPosition.x, 2) + Mathf.Pow(bullet.transform.localPosition.y, 2) > Mathf.Pow(_towerinfo.AttackRange / 2, 2))
+                {
+                    bullet.Death();
+                }
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -43,6 +66,7 @@ namespace TetrisDefence.Game
             if (!targets.Contains(target))
             {
                 targets.Add(target);
+                target.onDeath += IfDeadRemoveFromList;
             }
         }
 
@@ -50,12 +74,16 @@ namespace TetrisDefence.Game
         {
             if (targets.Contains(other.gameObject.GetComponent<EnemyBase>()))
             {
-                Vector3 direction = targets[0].transform.position - transform.position;
+                Vector3 direction = targets[0].transform.position - barrel.transform.position;
                 direction.z = 0;
-                transform.up = direction;
+                barrel.transform.up = direction;
             }
 
-            if (_attackDelay < _attackSpeed)
+            if (_attackDelay > _towerinfo.AttackCooldown)
+            {
+                Shoot();
+                _attackDelay = 0;
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -66,32 +94,58 @@ namespace TetrisDefence.Game
             {
                 targets.Remove(target);
             }
+        }
 
-            if (targets.Count == 0)
+        public override void Born()
+        {
+            base.Born();
+
+            TowerManager.Instance.Register(this);
+            transform.up = Vector3.up;
+            transform.localPosition = new Vector3(0, 0, -0.4f);
+        }
+
+        public override void Death()
+        {
+            base.Death();
+
+            TowerManager.Instance.Unregister(this);
+        }
+
+        public void Shoot()
+        {
+            var bullet = PoolManager.Instance.GetBullet();
+            bullet.gameObject.SetActive(false);
+
+            bullets.Add(bullet);
+            bullet.transform.SetParent(transform);
+            bullet.transform.position = muzzle.transform.position;
+            bullet.transform.rotation = barrel.transform.rotation;
+            bullet.bulletSpeed = _towerinfo.AttackSpeed;
+            bullet.onDeath += IfDeadRemoveFromList;
+
+            bullet.gameObject.SetActive(true);
+        }
+
+        private void IfDeadRemoveFromList(IPool pool)
+        {
+            if (targets.Contains(pool))
             {
-                transform.up = Vector3.up;
+                targets.Remove((EnemyBase)pool);
+            }
+            else if (bullets.Contains(pool))
+            {
+                bullets.Remove((Bullet)pool);
             }
         }
 
-        private IEnumerator C_Shoot(int num)
+        private void OnMouseDown()
         {
-            Bullet[] bullets = PoolManager.Instance.GetBullets(num);
+            TowerManager.Instance.TowerSelection(_towerinfo);
+        }
 
-            for (int ix = 0; ix < num; ix++)
-            {
-
-                foreach (var bullet in bullets)
-                {
-                    bullet.gameObject.SetActive(false);
-                    bullet.transform.SetParent(transform);
-                    bullet.transform.position = muzzle.transform.position;
-                    bullet.transform.rotation = transform.rotation;
-                }
-
-                print(ix);
-                bullets[ix].gameObject.SetActive(true);
-                yield return new WaitForSecondsRealtime(1.0f);
-            }
+        private void OnMouseUp()
+        {
             
         }
     }

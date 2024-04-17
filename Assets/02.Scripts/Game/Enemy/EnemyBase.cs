@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Map;
@@ -8,47 +7,65 @@ namespace TetrisDefence.Game.Enemy
 {
     public class EnemyBase : PoolBase
     {
-        public int currentIndex;
-        public EnemyBase Child;
-        protected float _movePercent;
-        private float _hp = default;
-		public float moveSpeed = 1.0f;
+        [field: SerializeField] public int CurrentRoadIndex { get; protected set; }
 
+        public EnemyInfo enemyInfo;
+
+        protected float _movePercent;
+
+        private float _hp = default;
+        private float _moveSpeed = default;
+        private int _childIndex;
+
+
+        private void Start()
+        {
+            _hp = enemyInfo.Damage;
+            _moveSpeed = enemyInfo.Speed;
+            _childIndex = (int)enemyInfo.ChildIndex;
+
+            if (_childIndex != (int)ItemIndex - 1)
+            {
+                if (ItemIndex != Enums.EItem.TrigonalPrism || _childIndex != 0)
+                {
+                    print($"[{name}]: {_childIndex}가 {ItemIndex}와 맞지 않음");
+                    _childIndex = (int)ItemIndex - 1;
+                }
+            }
+        }
 
         public override void Born()
         {
             base.Born();
+
+            
 
             Move();
         }
 
         public override void Death()
         {
-            base.Death();
-
-            if ((int)_itemIndex < 4 || currentIndex >= MapOfNodes.roads.Length)
+            if (_childIndex < 3 || CurrentRoadIndex >= MapOfNodes.roads.Length)
             {
+                base.Death();
+
                 return;
             }
 
-            var child = PoolManager.Instance.GetEnemy(_itemIndex - 1);
+            var child = PoolManager.Instance.GetEnemy(_childIndex);
 
             child.transform.SetParent(transform.parent);
             child.transform.position = transform.position;
             child.transform.rotation = transform.rotation;
-            child.currentIndex = currentIndex;
+            child.CurrentRoadIndex = CurrentRoadIndex;
             child._movePercent = _movePercent;
-            child.gameObject.SetActive(true);
-        }
 
-        private void OnEnable()
-        {
-            Born();
+            base.Death();
         }
 
         public void Move()
         {
-            if (currentIndex >= MapOfNodes.roads.Length)
+            if (CurrentRoadIndex >= MapOfNodes.roads.Length)
             {
                 Death();
             }
@@ -67,10 +84,10 @@ namespace TetrisDefence.Game.Enemy
         {
             while (_movePercent < 0.5f)
             {
-                transform.position = Vector3.Lerp(MapOfNodes.roads[currentIndex].inlet,
-                                                  MapOfNodes.roads[currentIndex].center,
+                transform.position = Vector3.Lerp(MapOfNodes.roads[CurrentRoadIndex].inlet,
+                                                  MapOfNodes.roads[CurrentRoadIndex].center,
                                                   (_movePercent - 0.0f) / (0.5f - 0.0f));
-                _movePercent += Time.deltaTime * moveSpeed;
+                _movePercent += Time.deltaTime * _moveSpeed;
                 yield return null;
             }
 
@@ -81,16 +98,16 @@ namespace TetrisDefence.Game.Enemy
         {
             while (_movePercent >= 0.5f && _movePercent < 1.0f)
             {
-                transform.position = Vector3.Lerp(MapOfNodes.roads[currentIndex].center,
-                                                  MapOfNodes.roads[currentIndex].outlet,
+                transform.position = Vector3.Lerp(MapOfNodes.roads[CurrentRoadIndex].center,
+                                                  MapOfNodes.roads[CurrentRoadIndex].outlet,
                                                   (_movePercent - 0.5f) / (1.0f - 0.5f));
-                _movePercent += Time.deltaTime * moveSpeed;
+                _movePercent += Time.deltaTime * _moveSpeed;
                 yield return null;
             }
 
             _movePercent -= 1.0f;
-            currentIndex += 1;
-            
+            CurrentRoadIndex += 1;
+
             Move();
         }
 
@@ -100,12 +117,12 @@ namespace TetrisDefence.Game.Enemy
 
             while (t < 1)
             {
-                Quaternion.Slerp(transform.rotation, MapOfNodes.roads[currentIndex].transform.rotation, t);
-                t += Time.deltaTime * moveSpeed;
+                Quaternion.Slerp(transform.rotation, MapOfNodes.roads[CurrentRoadIndex].transform.rotation, t);
+                t += Time.deltaTime * _moveSpeed;
                 yield return null;
             }
 
-            transform.rotation = MapOfNodes.roads[currentIndex].transform.rotation;
+            transform.rotation = MapOfNodes.roads[CurrentRoadIndex].transform.rotation;
         }
     }
 }

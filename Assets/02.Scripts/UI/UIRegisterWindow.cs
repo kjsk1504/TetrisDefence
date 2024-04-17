@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine;
+using TetrisDefence.Data.Utill;
 
 namespace TetrisDefence.UI
 {
@@ -34,7 +34,7 @@ namespace TetrisDefence.UI
 
             _confirm.onClick.AddListener(() =>
             {
-                WebDataRequest.Instance.OnPostButtonClicked("signup", _id.text, _pw.text);
+                WebDataRequest.Instance.OnPostButtonClicked("signup", _id.text, CryptographicHashFunction.CalculateSHA256(_pw.text));
             });
 
             _cancel.onClick.AddListener(Hide);

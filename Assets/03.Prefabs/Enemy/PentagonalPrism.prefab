@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2cb7f8503900e4aa109fb0cba08939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentIndex: 0
-  Child: {fileID: 9146288796144282665, guid: e2f8c07872f87cc4d93f54efc73ea3f7, type: 3}
+  _itemIndex: 5
+  <CurrentRoadIndex>k__BackingField: 0
+  enemyInfo: {fileID: 11400000, guid: 5b3b3b2f60a8d11488a1306b0760f4ab, type: 2}
   moveSpeed: 1.2

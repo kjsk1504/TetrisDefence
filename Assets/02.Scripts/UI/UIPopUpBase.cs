@@ -19,7 +19,7 @@ namespace TetrisDefence.UI
         {
             base.InputAction();
 
-            if (InputManager.Instance.IsLeftClicked || InputManager.Instance.IsRightClicked)
+            if (InputManager.Instance.IsMouseLeftClickedDown || InputManager.Instance.IsMouseRightClickedDown)
             {
                 if (UIManager.Instance.TryCastOther(this, out IUI other, out GameObject hovered))
                 {
@@ -28,6 +28,11 @@ namespace TetrisDefence.UI
                         other.Show();
                     }
                 }
+            }
+
+            if (InputManager.Instance.IsESCKeyDown)
+            {
+                Hide();
             }
         }
 

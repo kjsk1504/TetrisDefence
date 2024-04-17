@@ -10,6 +10,7 @@ namespace TetrisDefence.Game.Map
     {
         /// <summary> 타워 오브젝트가 위에 있는지 여부 </summary>
         public bool OnTower { get; private set; } = default;
+        public int[] Location { get; private set; }
 
 
         protected override void Awake()
@@ -17,6 +18,7 @@ namespace TetrisDefence.Game.Map
             base.Awake();
 
             MapOfNodes.Register(this);
+            Location = transform.GetComponentInParent<NodeSocket>().Location;
         }
     }
 }

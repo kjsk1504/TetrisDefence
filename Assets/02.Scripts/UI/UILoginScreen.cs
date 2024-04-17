@@ -1,9 +1,7 @@
 using TetrisDefence.Data.Manager;
-using UnityEngine;
+using TetrisDefence.Data.Utill;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 
 namespace TetrisDefence.UI
 {
@@ -11,7 +9,7 @@ namespace TetrisDefence.UI
     /// 로그인 스크린 UI
     /// <br><see cref=" UIScreenBase"/>를 상속 받음</br>
     /// </summary>
-    public class LoginUI : UIScreenBase
+    public class UILoginScreen : UIScreenBase
     {
         /// <summary> 아이디 입력 필드 </summary>
         private TMP_InputField _id;
@@ -34,7 +32,7 @@ namespace TetrisDefence.UI
 
             _tryLogin.onClick.AddListener(() =>
             {
-                WebDataRequest.Instance.OnPostButtonClicked("login", _id.text, _pw.text);
+                WebDataRequest.Instance.OnPostButtonClicked("login", _id.text, CryptographicHashFunction.CalculateSHA256(_pw.text));
             });
 
             _register.onClick.AddListener(() =>

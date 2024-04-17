@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5411584256364546575}
-  - component: {fileID: -1247608247743928943}
+  - component: {fileID: -8719889192735139387}
   - component: {fileID: -921868627739120428}
   m_Layer: 0
   m_Name: Tower
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 2424605155938308073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &-1247608247743928943
+--- !u!54 &-8719889192735139387
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,10 +74,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdb75a1acb5d254494ab5644606fe19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemIndex: 2
+  <TowerIndex>k__BackingField: 0
+  <TowerLocation>k__BackingField: 0000000000000000
+  <Tier>k__BackingField: 1
   bulletPrefab: {fileID: 4831694325685892778, guid: 41e5831ce00ee344689d7e71523f841f, type: 3}
+  barrel: {fileID: 7665814718026361576}
   muzzle: {fileID: 8300177839003338257}
-  AttackRange: {fileID: 5783588252755370897}
+  attackRange: {fileID: 5783588252755370897}
   targets: []
+  bullets: []
 --- !u!1 &7665814718026361576
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665814718026361576}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

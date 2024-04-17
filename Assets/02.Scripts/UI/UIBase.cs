@@ -28,7 +28,7 @@ namespace TetrisDefence.UI
 
         protected virtual void Awake()
         {
-            canvas = GetComponent<Canvas>();
+            canvas = GetComponentInParent<Canvas>();
             raycastModule = GetComponent<GraphicRaycaster>();
             UIManager.Instance.Register(this);
         }
@@ -39,9 +39,13 @@ namespace TetrisDefence.UI
         public void Toggle()
         {
             if (canvas.enabled)
+            {
                 Hide();
+            }
             else
+            {
                 Show();
+            }
         }
 
         public virtual void InputAction()

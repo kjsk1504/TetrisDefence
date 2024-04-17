@@ -4,6 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Networking;
 using Debug = UnityEngine.Debug;
+using UnityEngine.UI;
 
 /// <summary>
 /// 웹서버에 데이터를 저장이나 검색 요청
@@ -11,8 +12,8 @@ using Debug = UnityEngine.Debug;
 /// </summary>
 public class WebDataRequest : SingletonMonoBase<WebDataRequest>
 {
-    /// <summary> 웹서버가 실행될 프로세스 </summary>
-    private Process process = default;
+    /// <summary> 연결 재시도 버튼 </summary>
+    [SerializeField] Button _reConnect;
 
     /// <summary> ip 주소 (기본값: localhost) </summary>
     [SerializeField] string _url = "localhost";
@@ -21,18 +22,22 @@ public class WebDataRequest : SingletonMonoBase<WebDataRequest>
     [SerializeField] string _port = "3000";
 
 
-    private void OnEnable()
+    protected override void Awake()
     {
-        ProcessStartInfo processInfo = new ProcessStartInfo("node.exe", "C:\\Users\\kjsk1\\Documents\\kjs\\Workspace\\Nodejs\\TetrisDefenceServer\\index.js");
-        processInfo.CreateNoWindow = false;
-        process = Process.Start(processInfo);
+        _reConnect = GameObject.Find("Button - ReConnect").GetComponent<Button>();
+        _reConnect.onClick.AddListener(ConnectionCheck);
     }
 
-    private void OnDisable()
-    {
-        ProcessStartInfo processInfo = new ProcessStartInfo("taskkill.exe", "/f /im node.exe");
-        Process.Start(processInfo);
-    }
+    //private void OnEnable()
+    //{
+    //    Process.Start(".\\TetrisDefenceServer\\DB_Server_Start.bat");
+    //    Process.Start(".\\TetrisDefenceServer\\Web_Server_Start.bat");
+    //}
+
+    //private void OnDisable()
+    //{
+    //    Process.Start("taskkill.exe", "/f /im node.exe");
+    //}
 
     /// <summary>
     /// <see langword="URL"/>을 만듬
@@ -87,7 +92,7 @@ public class WebDataRequest : SingletonMonoBase<WebDataRequest>
         }
         else
         {
-            Debug.Log("응답 실패");
+            Debug.Log("웹서버 응답 실패");
         }
     }
 

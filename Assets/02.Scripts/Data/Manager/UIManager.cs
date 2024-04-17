@@ -55,7 +55,7 @@ namespace TetrisDefence.Data.Manager
             }
             else
             {
-                throw new Exception($"[UIManager] : Failed to register {ui.GetType()}... already exist.");
+                throw new Exception($"[UIManager] : {ui.GetType()}가 이미 존재하여 등록할 수 없음");
             }
         }
 
@@ -74,7 +74,7 @@ namespace TetrisDefence.Data.Manager
             }
             else
             {
-                throw new Exception($"[UIManager] : Failed to get {typeof(T)}... not exist.");
+                throw new Exception($"[UIManager] : {typeof(T)}은 존재하지 않아 가져올 수 없음.");
             }
         }
 

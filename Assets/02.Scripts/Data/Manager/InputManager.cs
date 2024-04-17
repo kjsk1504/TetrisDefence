@@ -12,38 +12,81 @@ namespace TetrisDefence.Data.Manager
         public string InputString { get; private set; } = default;
         /// <summary> 현재 픽셀 좌표상의 마우스 위치 </summary>
         public Vector3 MousePosition { get; private set; } = default;
-        /// <summary> 키보드의 아무 키가 눌렸는지 여부 </summary>
+        /// <summary> 키보드나 마우스가 눌렸는지 여부 </summary>
         public bool IsAnyKeyDown { get; private set; } = default;
         /// <summary> 수평 방향 입력 </summary>
-        public float Horizontal { get; private set; } = default;
+        public float HorizontalAxis { get; private set; } = default;
         /// <summary> 수직 방향 입력 </summary>
-        public float Vertical { get; private set; } = default;
+        public float VerticalAxis { get; private set; } = default;
         /// <summary> 키보드 <see langword="Tab"/>키가 눌렸는지 여부 </summary>
-        public bool IsTabDown { get; private set; } = default;
+        public bool IsTabKeyDown { get; private set; } = default;
         /// <summary> 키보드 <see langword="Shift+Tab"/>키가 눌렸는지 여부(왼쪽, 오른쪽 둘 다) </summary>
-        public bool IsShiftTabDown { get; private set; } = default;
+        public bool IsShiftTabKeyDown { get; private set; } = default;
         /// <summary> 키보드 <see langword="Enter"/>키가 눌렸는지 여부(키패드의 enter도 포함) </summary>
-        public bool IsEnterDown { get; private set; } = default;
-        /// <summary> 마우스 왼쪽 버튼이 눌렸는지 여부 </summary>
-        public bool IsLeftClicked { get; private set; } = default;
-        /// <summary> 마우스 오른쪽 버튼이 눌렸는지 여부 </summary>
-        public bool IsRightClicked { get; private set; } = default;
+        public bool IsEnterKeyDown { get; private set; } = default;
         /// <summary> 키보드 <see cref="KeyCode.Escape"/>키가 눌렸는지 여부 </summary>
-        public bool IsESCDown { get; private set; } = default;
+        public bool IsESCKeyDown { get; private set; } = default;
+        /// <summary> 키보드 <see cref="KeyCode.Space"/>키가 눌렸는지 여부 </summary>
+        public bool IsSpaceBarKeyDown { get; private set; } = default;
+        /// <summary> 마우스 왼쪽 버튼이 눌렸는지 여부 </summary>
+        public bool IsMouseLeftClickedDown { get; private set; } = default;
+        /// <summary> 마우스 왼쪽 버튼이 눌리는 중인지 여부 </summary>
+        public bool IsMouseLeftClicking { get; private set; } = default;
+        /// <summary> 마우스 왼쪽 버튼이 눌렸다 떼졌는지 여부 </summary>
+        public bool IsMouseLeftClickedUp { get; private set; } = default;
+        /// <summary> 마우스 오른쪽 버튼이 눌렸는지 여부 </summary>
+        public bool IsMouseRightClickedDown { get; private set; } = default;
+        /// <summary> 마우스 오른쪽 버튼이 눌리는 중인지 여부 </summary>
+        public bool IsMouseRightClicking { get; private set; } = default;
+        /// <summary> 마우스 오른쪽 버튼이 눌렸다 떼졌는지 여부 </summary>
+        public bool IsMouseRightClickedUp { get; private set; } = default;
+        /// <summary> 마우스 가운데 버튼이 눌렸는지 여부 </summary>
+        public bool IsMouseMiddleClickedDown { get; private set; } = default;
+        /// <summary> 마우스 가운데 버튼이 눌리는 중인지 여부 </summary>
+        public bool IsMouseMiddleClicking { get; private set; } = default;
+        /// <summary> 마우스 가운데 버튼이 눌렸다 떼졌는지 여부 </summary>
+        public bool IsMouseMiddleClickedUp { get; private set; } = default;
+        /// <summary> 마우스 4번째 버튼이 눌렸는지 여부 </summary>
+        public bool IsMouseFourthClickedDown { get; private set; } = default;
+        /// <summary> 마우스 4번째 버튼이 눌리는 중인지 여부 </summary>
+        public bool IsMouseFourthClicking { get; private set; } = default;
+        /// <summary> 마우스 4번째 버튼이 눌렸다 떼졌는지 여부 </summary>
+        public bool IsMouseFourthClickedUp { get; private set; } = default;
+        /// <summary> 마우스 5번째 버튼이 눌렸는지 여부 </summary>
+        public bool IsMouseFifthClickedDown { get; private set; } = default;
+        /// <summary> 마우스 5번째 버튼이 눌리는 중인지 여부 </summary>
+        public bool IsMouseFifthClicking { get; private set; } = default;
+        /// <summary> 마우스 5번째 버튼이 눌렸다 떼졌는지 여부 </summary>
+        public bool IsMouseFifthClickedUp { get; private set; } = default;
+
 
         private void Update()
         {
             InputString = Input.inputString;
             MousePosition = Input.mousePosition;
             IsAnyKeyDown = Input.anyKeyDown;
-            Horizontal = Input.GetAxis("Horizontal");
-            Vertical = Input.GetAxis("Vertical");
-            IsTabDown = Input.GetKeyDown(KeyCode.Tab) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-            IsShiftTabDown = Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-            IsEnterDown = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
-            IsLeftClicked = Input.GetMouseButtonDown(0);
-            IsRightClicked = Input.GetMouseButtonDown(1);
-            IsESCDown = Input.GetKeyDown(KeyCode.Escape);
+            HorizontalAxis = Input.GetAxis("Horizontal");
+            VerticalAxis = Input.GetAxis("Vertical");
+            IsTabKeyDown = Input.GetKeyDown(KeyCode.Tab) && !(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+            IsShiftTabKeyDown = Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+            IsEnterKeyDown = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
+            IsESCKeyDown = Input.GetKeyDown(KeyCode.Escape);
+            IsSpaceBarKeyDown = Input.GetKeyDown(KeyCode.Space);
+            IsMouseLeftClickedDown = Input.GetMouseButtonDown(0);
+            IsMouseLeftClicking = Input.GetMouseButton(0);
+            IsMouseLeftClickedUp = Input.GetMouseButtonUp(0);
+            IsMouseRightClickedDown = Input.GetMouseButtonDown(1);
+            IsMouseRightClicking = Input.GetMouseButton(1);
+            IsMouseRightClickedUp = Input.GetMouseButtonUp(1);
+            IsMouseMiddleClickedDown = Input.GetMouseButtonDown(2);
+            IsMouseMiddleClicking = Input.GetMouseButton(2);
+            IsMouseMiddleClickedUp = Input.GetMouseButtonUp(2);
+            IsMouseFourthClickedDown = Input.GetMouseButtonDown(3);
+            IsMouseFourthClicking = Input.GetMouseButton(3);
+            IsMouseFourthClickedUp = Input.GetMouseButtonUp(3);
+            IsMouseFifthClickedDown = Input.GetMouseButtonDown(4);
+            IsMouseFifthClicking = Input.GetMouseButton(4);
+            IsMouseFifthClickedUp = Input.GetMouseButtonUp(4);
         }
     }
 }

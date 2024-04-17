@@ -1,0 +1,17 @@
+{
+  "name": "tetrisdefenceserver",
+  "version": "0.0.1",
+  "description": "simple http server for TetrisDefence.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor index.js"
+  },
+  "author": "kjs",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "supervisor": "^0.12.0"
+  },
+  "devDependencies": {}
+}

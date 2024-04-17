@@ -48,5 +48,12 @@ namespace TetrisDefence.UI
             _hideSecond = hideSecond;
             Invoke(nameof(Hide), _hideSecond);
         }
+
+        public override void Hide()
+        {
+            CancelInvoke(nameof(Hide));
+
+            base.Hide();
+        }
     }
 }

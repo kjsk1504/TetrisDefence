@@ -1,12 +1,12 @@
 namespace TetrisDefence.Game.Map
 {
     /// <summary>
-    /// 노드(<see cref="NodeBase"/>)와 소켓(<see cref="Socket"/>)을 등록한 맵의 정보
+    /// 노드(<see cref="NodeBase"/>)와 소켓(<see cref="NodeSocket"/>)을 등록한 맵의 정보
     /// </summary>
     public static class MapOfNodes
     {
         /// <summary> 좌표(12x12)에 해당하는 소켓 </summary>
-        public static Socket[,] sockets = new Socket[12, 12];
+        public static NodeSocket[,] sockets = new NodeSocket[12, 12];
         /// <summary> 모든 도로 노드의 배열 </summary>
         public static RoadNode[] roads = new RoadNode[73];
         /// <summary> 모든 타워 노드의 배열 </summary>
@@ -42,10 +42,10 @@ namespace TetrisDefence.Game.Map
         }
 
         /// <summary>
-        /// 소켓(<see cref="Socket"/>)을 등록
+        /// 소켓(<see cref="NodeSocket"/>)을 등록
         /// </summary>
         /// <param name="socket"> 등록할 소켓 <br>소켓의 게임 오브젝트는 이름이 (00, 00)의 형식으로 끝나야함</br> </param>
-        public static void Register(Socket socket)
+        public static void Register(NodeSocket socket)
         {
             string rowString = string.Join("", socket.name[socket.name.Length - 7], socket.name[socket.name.Length - 6]);
             string colString = string.Join("", socket.name[socket.name.Length - 3], socket.name[socket.name.Length - 2]);

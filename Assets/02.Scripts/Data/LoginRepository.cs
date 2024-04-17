@@ -42,6 +42,7 @@ namespace TetrisDefence.Data
 
         public void UpdateData(int id, LoginRepository data)
         {
+            onDataUpdated?.Invoke(id, data);
             throw new NotImplementedException();
         }
     }

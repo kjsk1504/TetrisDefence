@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0acc03eec5cb64aa5ec2caaac8e4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentIndex: 0
-  Child: {fileID: -7439557738431656494, guid: 0fd0c64c8f4586b4faa4d413c65d42db, type: 3}
+  _itemIndex: 4
+  <CurrentRoadIndex>k__BackingField: 0
+  enemyInfo: {fileID: 11400000, guid: 490c6c90c23a31c4b875d43bd5a93dfe, type: 2}
   moveSpeed: 1.1
 --- !u!1 &6351681710216113163
 GameObject:
