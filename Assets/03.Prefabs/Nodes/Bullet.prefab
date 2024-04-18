@@ -145,11 +145,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6408255868015099578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f15593531ac6f04db105fb0b7dcb1de, type: 3}
+  m_Script: {fileID: 11500000, guid: 01620b1eabbe197489adace51a7238d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemIndex: 1
+  itemIndex: 1
   translate: {x: 0, y: 0, z: 0}
   angleRad: 0
-  bulletSpeed: 1
-  bulletDamage: 1

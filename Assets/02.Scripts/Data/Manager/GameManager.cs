@@ -7,6 +7,6 @@ namespace TetrisDefence.Data.Manager
 {
     public class GameManager : SingletonMonoBase<GameManager>
     {
-        
+        public float NexusHP = 1000;
     }
 }

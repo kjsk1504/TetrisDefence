@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TetrisDefence.Enums;
+using TetrisDefence.Data.Enums;
 using UnityEngine;
 
 namespace TetrisDefence.Data

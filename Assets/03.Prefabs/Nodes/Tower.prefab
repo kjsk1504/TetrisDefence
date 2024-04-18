@@ -71,19 +71,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 503496952613155644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bdb75a1acb5d254494ab5644606fe19, type: 3}
+  m_Script: {fileID: 11500000, guid: de48e8ea4c06c87429a2704c6513a789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemIndex: 2
+  itemIndex: 2
   <TowerIndex>k__BackingField: 0
   <TowerLocation>k__BackingField: 0000000000000000
-  <Tier>k__BackingField: 1
+  <Tier>k__BackingField: 0
   bulletPrefab: {fileID: 4831694325685892778, guid: 41e5831ce00ee344689d7e71523f841f, type: 3}
   barrel: {fileID: 7665814718026361576}
   muzzle: {fileID: 8300177839003338257}
   attackRange: {fileID: 5783588252755370897}
-  targets: []
-  bullets: []
+  _targets: []
+  _bullets: []
 --- !u!1 &7665814718026361576
 GameObject:
   m_ObjectHideFlags: 0

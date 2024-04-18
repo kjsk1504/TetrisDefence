@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TetrisDefence.Enums;
-using TetrisDefence.Game;
-using TetrisDefence.Game.Enemy;
-using TetrisDefence.Game.Mino;
+using TetrisDefence.Data.Enums;
 using TetrisDefence.Data.Utill;
+using TetrisDefence.Game.Pool;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,9 +12,9 @@ namespace TetrisDefence.Data.Manager
     {
         public PooledObjects itemObjects;
         public PooledObjects minoObjects;
-        public PoolBase[] ItemPrefabs;
+        public ItemBase[] ItemPrefabs;
         public MinoBase[] MinoPrefabs;
-        public Dictionary<EItem, ObjectPool<PoolBase>> pooledItems = new ();
+        public Dictionary<EItem, ObjectPool<ItemBase>> pooledItems = new ();
         public Dictionary<EMino, ObjectPool<MinoBase>> pooledMinos = new ();
 
 
@@ -24,157 +22,245 @@ namespace TetrisDefence.Data.Manager
         {
             base.Awake();
 
-            EItem[] items = (EItem[])Enum.GetValues(typeof(EItem));
+            EItem[] itemIndexes = (EItem[])Enum.GetValues(typeof(EItem));
 
-            foreach (var item in items)
+            foreach (var itemIndex in itemIndexes)
             {
                 CreatePool
                 (
-                    item,
+                    itemIndex,
                     () =>
                     {
-                        var pool = Instantiate(ItemPrefabs[(int)item].GetComponent<PoolBase>());
-                        pool.name = pool.name.Replace("(Clone)", "");
-                        return pool;
+                        var item = Instantiate(ItemPrefabs[(int)itemIndex].GetComponent<ItemBase>());
+                        item.transform.SetParent(itemObjects.transforms[(int)itemIndex]);
+                        item.name = item.name.Replace("(Clone)", "");
+                        item.gameObject.SetActive(false);
+                        return item;
                     },
-                    actionOnGet: (pool) =>
+                    actionOnGet: (item) =>
                     {
-                        pool.transform.SetParent(itemObjects.transforms[(int)item]);
-                        pool.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        pool.gameObject.SetActive(false);
+                        item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        item.gameObject.SetActive(false);
                     },
-                    actionOnRelease: (pool) =>
+                    actionOnRelease: (item) =>
                     {
                         StopAllCoroutines();
-                        pool.transform.SetParent(itemObjects.transforms[(int)item]);
-                        pool.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        pool.gameObject.SetActive(false);
+                        item.transform.SetParent(itemObjects.transforms[(int)itemIndex]);
+                        item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        item.gameObject.SetActive(false);
                     }
                 );
             }
 
-            EMino[] minos = (EMino[])Enum.GetValues(typeof(EMino));
+            EMino[] minoIndexes = (EMino[])Enum.GetValues(typeof(EMino));
 
-            foreach (var mino in minos)
+            foreach (var minoIndex in minoIndexes)
             {
                 CreateMino
                 (
-                    mino,
-                () =>
-                {
-                        var pool = Instantiate(MinoPrefabs[(int)mino].GetComponent<MinoBase>());
-                        pool.name = pool.name.Replace("(Clone)", "");
-                        return pool;
-                    },
-                    actionOnGet: (pool) =>
+                    minoIndex,
+                    () =>
                     {
-                        pool.transform.SetParent(minoObjects.transforms[(int)mino]);
-                        pool.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        pool.gameObject.SetActive(true);
+                        var mino = Instantiate(MinoPrefabs[(int)minoIndex].GetComponent<MinoBase>());
+                        mino.transform.SetParent(minoObjects.transforms[(int)minoIndex]);
+                        mino.name = mino.name.Replace("(Clone)", "");
+                        mino.gameObject.SetActive(false);
+                        return mino;
                     },
-                    actionOnRelease: (pool) =>
+                    actionOnGet: (mino) =>
                     {
-                        pool.transform.SetParent(minoObjects.transforms[(int)mino]);
-                        pool.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        pool.gameObject.SetActive(false);
+                        mino.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        mino.gameObject.SetActive(false);
+                    },
+                    actionOnRelease: (mino) =>
+                    {
+                        StopAllCoroutines();
+                        mino.transform.SetParent(minoObjects.transforms[(int)minoIndex]);
+                        mino.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        mino.gameObject.SetActive(false);
                     }
                 );
             }
         }
 
-        public void CreatePool(EItem key, 
-                               Func<PoolBase> createFunc,
-                               Action<PoolBase> actionOnGet = null,
-                               Action<PoolBase> actionOnRelease = null,
-                               Action<PoolBase> actionOnDestroy = null, 
+        public void CreatePool(EItem itemIndexKey, 
+                               Func<ItemBase> createFunc,
+                               Action<ItemBase> actionOnGet = null,
+                               Action<ItemBase> actionOnRelease = null,
+                               Action<ItemBase> actionOnDestroy = null, 
                                int maxSize = 1000)
         {
-            if (!pooledItems.ContainsKey(key))
+            if (!pooledItems.ContainsKey(itemIndexKey))
             {
-                ObjectPool<PoolBase> newPool = new ObjectPool<PoolBase>(createFunc, actionOnGet, actionOnRelease, actionOnDestroy, maxSize: maxSize);
-                pooledItems[key] = newPool;
+                ObjectPool<ItemBase> newPool = new ObjectPool<ItemBase>(createFunc, actionOnGet, actionOnRelease, actionOnDestroy, maxSize: maxSize);
+                pooledItems[itemIndexKey] = newPool;
             }
             else
             {
-                Debug.LogError($"[PoolManager]: Can't create. {key} is alreay created");
+                Debug.LogError($"[PoolManager - Create]: Item {itemIndexKey}는 이미 만들어져 있음");
             }
         }
 
-        public PoolBase[] GetItems(EItem item, int number = 1)
-        {
-            PoolBase[] pools = new PoolBase[number];
-
-            for (int ix = 0; ix < number; ix++)
-            {
-                pools[ix] = pooledItems[item].Get();
-            }
-
-            return pools;
-        }
-
-        public TowerController GetTower()
-        {
-            return pooledItems[EItem.Tower].Get().GetComponent<TowerController>();
-        }
-
-        public EnemyBase GetEnemy(int itemIndex)
-        {
-            if (itemIndex < 3 || itemIndex > 8)
-            {
-                Debug.Log($"{itemIndex}은 3~8사이여야 합니다.");
-                return default;
-            }
-
-            return pooledItems[(EItem)itemIndex].Get().GetComponent<EnemyBase>();
-        }
-
-        public Bullet[] GetBullets(int num)
-        {
-            Bullet[] bullets = new Bullet[num];
-
-            for (int ix = 0; ix < num; ix++)
-            {
-                bullets[ix] = (Bullet)pooledItems[EItem.Bullet].Get();
-            }
-
-            return bullets;
-        }
-
-        public Bullet GetBullet()
-        {
-            return (Bullet)pooledItems[EItem.Bullet].Get();
-        }
-
-        public void Release(PoolBase item)
-        {
-            pooledItems[Enum.Parse<EItem>(item.name)].Release(item);
-        }
-
-        public void CreateMino(EMino key,
+        public void CreateMino(EMino minoIndexKey,
                                Func<MinoBase> createFunc,
                                Action<MinoBase> actionOnGet = null,
                                Action<MinoBase> actionOnRelease = null,
                                Action<MinoBase> actionOnDestroy = null,
                                int maxSize = 1000)
         {
-            if (!pooledMinos.ContainsKey(key))
+            if (!pooledMinos.ContainsKey(minoIndexKey))
             {
                 ObjectPool<MinoBase> newPool = new ObjectPool<MinoBase>(createFunc, actionOnGet, actionOnRelease, actionOnDestroy, maxSize: maxSize);
-                pooledMinos[key] = newPool;
+                pooledMinos[minoIndexKey] = newPool;
             }
             else
             {
-                Debug.LogError($"[PoolManager]: Can't create. {key} is alreay created");
+                Debug.LogError($"[PoolManager - Create]: Mino {minoIndexKey}는 이미 만들어져 있음");
             }
         }
 
-        public MinoBase GetMino(EMino mino)
+        public T[] Get<T> (int number = 1, Action<IPool> onBorn = null, Action<IPool> onDeath = null) where T : PoolBase
         {
-            return pooledMinos[mino].Get();
+            T[] pools = new T[number];
+
+            if(Enum.TryParse(nameof(T), out EItem itemIndex))
+            {
+                for (int ix = 0; ix < number; ix++)
+                {
+                    pools[ix] = (T)pooledItems[itemIndex].Get().GetComponent<PoolBase>();
+                    if (onBorn != null) pools[ix].onBorn += onBorn;
+                    if (onDeath != null) pools[ix].onDeath += onDeath;
+                }
+            }
+            else if(Enum.TryParse(nameof(T), out EMino minoIndex))
+            {
+                for (int ix = 0; ix < number; ix++)
+                {
+                    pools[ix] = (T)pooledMinos[minoIndex].Get().GetComponent<PoolBase>();
+                    if (onBorn != null) pools[ix].onBorn += onBorn;
+                    if (onDeath != null) pools[ix].onDeath += onDeath;
+                }
+            }
+            else
+            {
+                throw new Exception($"[PoolManager - Get]: 해당 값이 등록되어 있지 않음");
+            }
+
+            return pools;
         }
-        public void Release(MinoBase mino)
+
+        public void Release(PoolBase pool)
         {
-            pooledMinos[Enum.Parse<EMino>(mino.name)].Release(mino);
+            if (Enum.TryParse(pool.poolIndex, out EItem itemIndex))
+            {
+                pooledItems[itemIndex].Release((ItemBase)pool);
+            }
+            else if (Enum.TryParse(pool.poolIndex, out EMino minoIndex))
+            {
+                pooledMinos[minoIndex].Release((MinoBase)pool);
+            }
+            else
+            {
+                throw new Exception($"[PoolManager - Release]: 해당 값이 등록되어 있지 않음");
+            }
+        }
+
+        public ItemBase[] GetItems(EItem itemIndex, int number = 1, Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            ItemBase[] items = new ItemBase[number];
+
+            for (int ix = 0; ix < number; ix++)
+            {
+                items[ix] = pooledItems[itemIndex].Get();
+                if (onBorn != null) items[ix].onBorn += onBorn;
+                if (onDeath != null) items[ix].onDeath += onDeath;
+            }
+
+            return items;
+        }
+
+        public MinoBase[] GetMinos(EMino minoIndex, int number = 1, Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            MinoBase[] minos = new MinoBase[number];
+
+            for (int ix = 0; ix < number; ix++)
+            {
+                MinoBase mino = pooledMinos[minoIndex].Get();
+                if (onBorn != null) mino.onBorn += onBorn;
+                if (onDeath != null) mino.onDeath += onDeath;
+            }
+
+            return minos;
+        }
+
+        public Bullet[] GetBullets(int number, Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            Bullet[] bullets = new Bullet[number];
+
+            for (int ix = 0; ix < number; ix++)
+            {
+                bullets[ix] = (Bullet)pooledItems[EItem.Bullet].Get();
+                if (onBorn != null) bullets[ix].onBorn += onBorn;
+                if (onDeath != null) bullets[ix].onDeath += onDeath;
+            }
+
+            return bullets;
+        }
+
+        public Bullet GetBullet(Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            Bullet bullet = (Bullet)pooledItems[EItem.Bullet].Get();
+
+            if (onBorn != null) bullet.onBorn += onBorn;
+            if (onDeath != null) bullet.onDeath += onDeath;
+
+            return bullet;
+        }
+
+        public EnemyBase GetEnemy(EItem enemyIndex, Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            if ((int)enemyIndex < 3 || (int)enemyIndex > 8)
+            {
+                Debug.Log($"{enemyIndex}은 3~8사이여야 합니다.");
+                return default;
+            }
+
+            EnemyBase enemy = (EnemyBase)pooledItems[enemyIndex].Get();
+
+            if (onBorn != null) enemy.onBorn += onBorn;
+            if (onDeath != null) enemy.onDeath += onDeath;
+
+            return enemy;
+        }
+
+        public Tower GetTower(Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            Tower tower = (Tower)pooledItems[EItem.Tower].Get();
+
+            if (onBorn != null) tower.onBorn += onBorn;
+            if (onDeath != null) tower.onDeath += onDeath;
+
+            return tower;
+        }
+
+        public void ReleaseItem(ItemBase item)
+        {
+            pooledItems[item.itemIndex].Release(item);
+        }
+
+        public MinoBase GetMino(EMino minoIndex, Action<IPool> onBorn = null, Action<IPool> onDeath = null)
+        {
+            MinoBase mino = pooledMinos[minoIndex].Get();
+
+            if (onBorn != null) mino.onBorn += onBorn;
+            if (onDeath != null) mino.onDeath += onDeath;
+
+            return mino;
+        }
+
+        public void ReleaseMino(MinoBase mino)
+        {
+            pooledMinos[mino.minoIndex].Release(mino);
         }
     }
 }

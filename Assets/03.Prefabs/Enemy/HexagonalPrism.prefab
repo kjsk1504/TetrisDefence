@@ -118,13 +118,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3103794324077355522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3593a0a8396cc4b9d769a734042a9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f71b9f68d06327469894472ceb86f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemIndex: 6
+  itemIndex: 6
   <CurrentRoadIndex>k__BackingField: 0
   enemyInfo: {fileID: 11400000, guid: 97de96bcf1d6703448c9f560f09f7d2b, type: 2}
-  moveSpeed: 1.3
+  nexus: {fileID: 0}
 --- !u!1 &8170886999651187974
 GameObject:
   m_ObjectHideFlags: 0

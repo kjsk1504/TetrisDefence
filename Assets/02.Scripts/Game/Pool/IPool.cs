@@ -1,0 +1,13 @@
+using System;
+
+namespace TetrisDefence.Game.Pool
+{
+    public interface IPool
+    {
+        event Action<IPool> onBorn;
+        event Action<IPool> onDeath;
+
+        void Born();
+        void Death();
+    }
+}

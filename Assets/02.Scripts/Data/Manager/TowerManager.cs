@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using TetrisDefence.Data.Utill;
-using TetrisDefence.Game;
+using TetrisDefence.Game.Pool;
 using TetrisDefence.UI;
 using UnityEngine;
 
@@ -8,27 +8,22 @@ namespace TetrisDefence.Data.Manager
 {
     public class TowerManager : SingletonMonoBase<TowerManager>
     {
-        [SerializeField] private List<TowerController> _towers = new ();
+        [SerializeField] private List<Tower> _towers = new ();
         private UITowerInformation _towerInfoUI;
 
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
 
         private void Start()
         {
             _towerInfoUI = UIManager.Instance.Get<UITowerInformation>();
         }
 
-        public void Register(TowerController tower)
+        public void Register(Tower tower)
         {
             _towers.Add(tower);
             tower.TowerIndex = _towers.Count;
         }
 
-        public void Unregister(TowerController tower)
+        public void Unregister(Tower tower)
         {
             int towerindex = _towers.IndexOf(tower);
             if (_towers.Remove(tower))

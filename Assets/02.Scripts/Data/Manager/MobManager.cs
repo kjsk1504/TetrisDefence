@@ -1,4 +1,5 @@
-using TetrisDefence.Enums;
+using System;
+using TetrisDefence.Data.Enums;
 using UnityEngine;
 
 namespace TetrisDefence.Data.Manager
@@ -13,7 +14,7 @@ namespace TetrisDefence.Data.Manager
         {
             for (int ix = 3; ix < 9; ix++)
             {
-                var enemy = PoolManager.Instance.GetEnemy(ix).transform;
+                var enemy = PoolManager.Instance.GetEnemy((EItem)ix).transform;
                 enemy.parent = transform;
                 enemy.position = StartPoint.position;
                 enemy.gameObject.SetActive(true);
