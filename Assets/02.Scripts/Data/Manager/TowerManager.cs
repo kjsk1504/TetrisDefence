@@ -2,35 +2,38 @@ using System.Collections.Generic;
 using TetrisDefence.Data.Utill;
 using TetrisDefence.Game.Pool;
 using TetrisDefence.UI;
-using UnityEngine;
 
 namespace TetrisDefence.Data.Manager
 {
     public class TowerManager : SingletonMonoBase<TowerManager>
     {
-        [SerializeField] private List<Tower> _towers = new ();
-        private UITowerInformation _towerInfoUI;
+        public bool isUIActive;
+        public Tower selectedTower;
+        public UITowerInformation towerInfoUI;
+        public List<Tower> towers = new ();
 
 
         private void Start()
         {
-            _towerInfoUI = UIManager.Instance.Get<UITowerInformation>();
+            towerInfoUI = UIManager.Instance.Get<UITowerInformation>();
+            towerInfoUI.onShow += () => isUIActive = true;
+            towerInfoUI.onHide += () => isUIActive = false;
         }
 
         public void Register(Tower tower)
         {
-            _towers.Add(tower);
-            tower.TowerIndex = _towers.Count;
+            towers.Add(tower);
+            tower.towerIndex = towers.Count;
         }
 
         public void Unregister(Tower tower)
         {
-            int towerindex = _towers.IndexOf(tower);
-            if (_towers.Remove(tower))
+            int towerindex = towers.IndexOf(tower);
+            if (towers.Remove(tower))
             {
-                for(int ix = towerindex; ix < _towers.Count; ix++)
+                for(int ix = towerindex; ix < towers.Count; ix++)
                 {
-                    _towers[ix].TowerIndex = ix + 1;
+                    towers[ix].towerIndex = ix + 1;
                 }
             }
             else
@@ -39,19 +42,17 @@ namespace TetrisDefence.Data.Manager
             }
         }
 
-        public void TowerSelection(TowerInfo selected)
+        public void Unregister(int towerIndex)
         {
-            _towerInfoUI.Hide();
-            _towerInfoUI.TowerInfo = selected;
-            _towerInfoUI.Show();
+            Unregister(towers[towerIndex]);
         }
 
-        public void ShootAllTowers()
+        public void TowerSelection(Tower selected)
         {
-            foreach(var tower in _towers)
-            {
-                tower.Shoot();
-            }
+            towerInfoUI.Hide();
+            selectedTower = selected;
+            towerInfoUI.tower = selectedTower;
+            towerInfoUI.Show();
         }
     }
 }

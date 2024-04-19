@@ -8,9 +8,9 @@ namespace TetrisDefence.Game.Pool
     [CreateAssetMenu(fileName = "new EnemyInfo", menuName = "ScriptableObjects/EnemyInfo")]
     public class EnemyInfo : ScriptableObject
     {
-        [field: SerializeField] public EItem Index { get; private set; }
-        [field: SerializeField] public int Damage { get; private set; }
-        [field: SerializeField] public float Speed { get; private set; }
-        [field: SerializeField] public EItem ChildIndex { get; private set; }
+        public EItem index = EItem.None;
+        public int damage = 0;
+        public float speed = 0.0f;
+        public EItem childIndex = EItem.None;
     }
 }

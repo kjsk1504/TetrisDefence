@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2164278256593890344}
   - component: {fileID: 290229285219887182}
   - component: {fileID: 2184741819594439890}
+  - component: {fileID: 4231825958456921535}
   m_Layer: 5
   m_Name: MinoSocket (04, 01)
   m_TagString: Untagged
@@ -75,6 +76,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4231825958456921535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81162356641366265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &352238304470155610
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +238,7 @@ GameObject:
   - component: {fileID: 5952358407944756256}
   - component: {fileID: 5001062208258077718}
   - component: {fileID: 7852235806045984063}
+  - component: {fileID: 5905930365050139371}
   m_Layer: 5
   m_Name: MinoSocket (03, 01)
   m_TagString: Untagged
@@ -287,6 +303,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5905930365050139371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352441305801354523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &470570003649531171
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +736,7 @@ GameObject:
   - component: {fileID: 3328657587001386323}
   - component: {fileID: 6643440903044766088}
   - component: {fileID: 2916888581254364180}
+  - component: {fileID: 3964161683455524106}
   m_Layer: 5
   m_Name: MinoSocket (06, 05)
   m_TagString: Untagged
@@ -770,6 +801,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3964161683455524106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866246921117502017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &1146782779371588779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1099,6 @@ GameObject:
   - component: {fileID: 324536778334622248}
   - component: {fileID: 4490752019839536464}
   - component: {fileID: 5118071159148953152}
-  - component: {fileID: 7369712826209581376}
   m_Layer: 5
   m_Name: MinoSockets (00, 00)
   m_TagString: Untagged
@@ -1179,20 +1223,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7369712826209581376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373895600060446890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minos: {fileID: 4591484938627165228}
-  canvas: {fileID: 3373260038605354317}
 --- !u!1 &1485586551465551147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1234,7 @@ GameObject:
   - component: {fileID: 6169318257735413077}
   - component: {fileID: 2317627593200057815}
   - component: {fileID: 9070751761580564039}
+  - component: {fileID: 6238169946419897279}
   m_Layer: 5
   m_Name: MinoSocket (06, 02)
   m_TagString: Untagged
@@ -1268,6 +1299,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6238169946419897279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485586551465551147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &1533579821176289831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1597,7 @@ GameObject:
   - component: {fileID: 2934954928197233514}
   - component: {fileID: 680094789282825308}
   - component: {fileID: 8676294724243218761}
+  - component: {fileID: 7971149340940920849}
   m_Layer: 5
   m_Name: MinoSocket (06, 06)
   m_TagString: Untagged
@@ -1616,6 +1662,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7971149340940920849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874254934783487743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &2115667379411263320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1823,7 @@ GameObject:
   - component: {fileID: 6314998784160169006}
   - component: {fileID: 6843425028000683341}
   - component: {fileID: 6674091261983766421}
+  - component: {fileID: 3106213170095257300}
   m_Layer: 5
   m_Name: MinoSocket (03, 04)
   m_TagString: Untagged
@@ -1827,6 +1888,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3106213170095257300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2209824015590421921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &2396556771519719264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +1913,7 @@ GameObject:
   - component: {fileID: 2332348171893402755}
   - component: {fileID: 2697848404036782973}
   - component: {fileID: 3831105226396629813}
+  - component: {fileID: 7635054498812059679}
   m_Layer: 5
   m_Name: MinoSocket (01, 05)
   m_TagString: Untagged
@@ -1902,6 +1978,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7635054498812059679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396556771519719264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &2555895055108052675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +2003,7 @@ GameObject:
   - component: {fileID: 498762752319743331}
   - component: {fileID: 5100094349794601055}
   - component: {fileID: 8212841767191715507}
+  - component: {fileID: 2286134627676951714}
   m_Layer: 5
   m_Name: MinoSocket (03, 03)
   m_TagString: Untagged
@@ -1977,6 +2068,95 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2286134627676951714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555895055108052675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
+--- !u!1 &2681258584128042286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713032229222894037}
+  - component: {fileID: 7562359462734397352}
+  - component: {fileID: 6937225474430297836}
+  m_Layer: 5
+  m_Name: Out
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &713032229222894037
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681258584128042286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8494603918701782107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 340, y: 0}
+  m_SizeDelta: {x: -680, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7562359462734397352
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681258584128042286}
+  m_CullTransparentMesh: 1
+--- !u!114 &6937225474430297836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681258584128042286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2706688146427742349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,6 +2207,7 @@ GameObject:
   - component: {fileID: 3798095080124346462}
   - component: {fileID: 7708841745288596100}
   - component: {fileID: 8779400997207693141}
+  - component: {fileID: 7697437192411260401}
   m_Layer: 5
   m_Name: MinoSocket (03, 02)
   m_TagString: Untagged
@@ -2091,6 +2272,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7697437192411260401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2908590488717281402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &3029016342130347719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,6 +2705,7 @@ GameObject:
   - component: {fileID: 763060679859429196}
   - component: {fileID: 8761747033255352412}
   - component: {fileID: 8417998594345656439}
+  - component: {fileID: 4239645871575912624}
   m_Layer: 5
   m_Name: MinoSocket (02, 03)
   m_TagString: Untagged
@@ -2574,6 +2770,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4239645871575912624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277819019219359409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &3326426847444630020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,6 +2795,7 @@ GameObject:
   - component: {fileID: 7285432847142045070}
   - component: {fileID: 8658377462614096694}
   - component: {fileID: 2526116936699167010}
+  - component: {fileID: 929177488859276185}
   m_Layer: 5
   m_Name: MinoSocket (04, 02)
   m_TagString: Untagged
@@ -2649,6 +2860,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &929177488859276185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326426847444630020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &4043872173990891396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +3192,7 @@ GameObject:
   - component: {fileID: 3873247619998704295}
   - component: {fileID: 6834906429677486067}
   - component: {fileID: 7229735866291211008}
+  - component: {fileID: 5858565531694160396}
   m_Layer: 5
   m_Name: MinoSocket (02, 04)
   m_TagString: Untagged
@@ -3031,6 +3257,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5858565531694160396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156909260910618592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &4198737125240589887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3042,6 +3282,7 @@ GameObject:
   - component: {fileID: 4554569215293319443}
   - component: {fileID: 7740644624148014114}
   - component: {fileID: 3884123178339040941}
+  - component: {fileID: 3569262619247137059}
   m_Layer: 5
   m_Name: MinoSocket (02, 02)
   m_TagString: Untagged
@@ -3106,6 +3347,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3569262619247137059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198737125240589887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &4365992632222941485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3117,6 +3372,7 @@ GameObject:
   - component: {fileID: 6690904851734418345}
   - component: {fileID: 5042759439148027141}
   - component: {fileID: 580512477411374006}
+  - component: {fileID: 5522349885738666425}
   m_Layer: 5
   m_Name: MinoSocket (04, 05)
   m_TagString: Untagged
@@ -3181,6 +3437,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5522349885738666425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365992632222941485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &4399272297194050518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3485,7 @@ RectTransform:
   m_Children:
   - {fileID: 4184718609776577259}
   - {fileID: 4133248639322447389}
+  - {fileID: 713032229222894037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3297,7 +3568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9583f9a189e90c4890b991e13ac8ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minos: []
+  minos: {fileID: 4591484938627165228}
+  outPanel: {fileID: 6937225474430297836}
   _no: {fileID: 4043332419023003747}
   _location: {fileID: 3395525977175793822}
   _damage: {fileID: 8110614124659476906}
@@ -3307,6 +3579,8 @@ MonoBehaviour:
   _dot: {fileID: 7112982491171566662}
   _cooldown: {fileID: 3008800057833099054}
   _range: {fileID: 195086192553857693}
+  _minos: []
+  _tetris: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &4411591064460886202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,6 +3728,7 @@ GameObject:
   - component: {fileID: 2062626146081353742}
   - component: {fileID: 562462451791686596}
   - component: {fileID: 5560184238640561008}
+  - component: {fileID: 4533883709715397491}
   m_Layer: 5
   m_Name: MinoSocket (01, 02)
   m_TagString: Untagged
@@ -3518,6 +3793,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4533883709715397491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481532639511396722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &4503413747459408974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,6 +3954,7 @@ GameObject:
   - component: {fileID: 776769012827656542}
   - component: {fileID: 8395926221943601632}
   - component: {fileID: 7223744167605439924}
+  - component: {fileID: 3088612624298446698}
   m_Layer: 5
   m_Name: MinoSocket (02, 05)
   m_TagString: Untagged
@@ -3729,6 +4019,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3088612624298446698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602152592383679305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &4664721638528873211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,6 +4044,7 @@ GameObject:
   - component: {fileID: 5176002336830647049}
   - component: {fileID: 45771001199928894}
   - component: {fileID: 5361940796582716249}
+  - component: {fileID: 3534110241052666771}
   m_Layer: 5
   m_Name: MinoSocket (05, 01)
   m_TagString: Untagged
@@ -3804,6 +4109,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3534110241052666771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4664721638528873211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &4692409280786592214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,6 +4461,7 @@ GameObject:
   - component: {fileID: 7199594454518064194}
   - component: {fileID: 5158014118145682803}
   - component: {fileID: 2960207630995713468}
+  - component: {fileID: 5103163677673395029}
   m_Layer: 5
   m_Name: MinoSocket (05, 06)
   m_TagString: Untagged
@@ -4206,6 +4526,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5103163677673395029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146635924328059737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &5286628924014495286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4294,6 +4628,7 @@ GameObject:
   - component: {fileID: 519994999655351262}
   - component: {fileID: 3730076435432110142}
   - component: {fileID: 7697378159782189840}
+  - component: {fileID: 7501266201921749755}
   m_Layer: 5
   m_Name: MinoSocket (03, 05)
   m_TagString: Untagged
@@ -4358,6 +4693,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7501266201921749755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629879087495968839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &5720660356719403538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4369,6 +4718,7 @@ GameObject:
   - component: {fileID: 315997735681888131}
   - component: {fileID: 6982134620447802253}
   - component: {fileID: 5836187348361714035}
+  - component: {fileID: 8302490169568365111}
   m_Layer: 5
   m_Name: MinoSocket (03, 06)
   m_TagString: Untagged
@@ -4433,6 +4783,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8302490169568365111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720660356719403538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &5819388476553753011
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,6 +5024,7 @@ GameObject:
   - component: {fileID: 1969628328564068211}
   - component: {fileID: 932661568044738679}
   - component: {fileID: 405870495261656768}
+  - component: {fileID: 5008270143166089033}
   m_Layer: 5
   m_Name: MinoSocket (01, 04)
   m_TagString: Untagged
@@ -4724,6 +5089,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5008270143166089033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090260473987625795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &6192085302202219695
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,6 +5114,7 @@ GameObject:
   - component: {fileID: 2647006634765194181}
   - component: {fileID: 2855510235892860017}
   - component: {fileID: 7705121512470079378}
+  - component: {fileID: 2657292447771835294}
   m_Layer: 5
   m_Name: MinoSocket (06, 04)
   m_TagString: Untagged
@@ -4799,6 +5179,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2657292447771835294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192085302202219695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &6241661894844942761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4810,6 +5204,7 @@ GameObject:
   - component: {fileID: 19847958080132464}
   - component: {fileID: 8858463876125807939}
   - component: {fileID: 2663297260618917572}
+  - component: {fileID: 9210765405320424207}
   m_Layer: 5
   m_Name: MinoSocket (05, 04)
   m_TagString: Untagged
@@ -4874,6 +5269,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9210765405320424207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241661894844942761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &6341746364323780548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,6 +5643,7 @@ GameObject:
   - component: {fileID: 793101267758581784}
   - component: {fileID: 5841121257292020375}
   - component: {fileID: 8688418617627363569}
+  - component: {fileID: 7844608146013941858}
   m_Layer: 5
   m_Name: MinoSocket (04, 04)
   m_TagString: Untagged
@@ -5298,6 +5708,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7844608146013941858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491262251585031144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &6640632692248200278
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,6 +5869,7 @@ GameObject:
   - component: {fileID: 8084607371402203874}
   - component: {fileID: 8897932336246235659}
   - component: {fileID: 7775339912241358888}
+  - component: {fileID: 7002897124348226931}
   m_Layer: 5
   m_Name: MinoSocket (04, 06)
   m_TagString: Untagged
@@ -5509,6 +5934,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7002897124348226931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6736203870897119668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &6806832750861254213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5520,6 +5959,7 @@ GameObject:
   - component: {fileID: 8754913478174850882}
   - component: {fileID: 3038725809705487440}
   - component: {fileID: 3291778136572725790}
+  - component: {fileID: 3319933930340068244}
   m_Layer: 5
   m_Name: MinoSocket (02, 01)
   m_TagString: Untagged
@@ -5584,6 +6024,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3319933930340068244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806832750861254213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &7194989309723981110
 GameObject:
   m_ObjectHideFlags: 0
@@ -5672,6 +6126,7 @@ GameObject:
   - component: {fileID: 6852072287245623669}
   - component: {fileID: 5738444143386989466}
   - component: {fileID: 2227288746878187697}
+  - component: {fileID: 588647481192719296}
   m_Layer: 5
   m_Name: MinoSocket (01, 06)
   m_TagString: Untagged
@@ -5736,6 +6191,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &588647481192719296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7216292174303930597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &7260857081746349574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6053,6 +6522,7 @@ GameObject:
   - component: {fileID: 3261940052348632667}
   - component: {fileID: 1763054112370139447}
   - component: {fileID: 5708490377493526362}
+  - component: {fileID: 1146118107309670274}
   m_Layer: 5
   m_Name: MinoSocket (05, 05)
   m_TagString: Untagged
@@ -6117,6 +6587,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1146118107309670274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543616070411562817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &7564401293570877430
 GameObject:
   m_ObjectHideFlags: 0
@@ -6128,6 +6612,7 @@ GameObject:
   - component: {fileID: 690627110869224715}
   - component: {fileID: 462042312150807972}
   - component: {fileID: 5444774715747942574}
+  - component: {fileID: 6162982780678476510}
   m_Layer: 5
   m_Name: MinoSocket (01, 03)
   m_TagString: Untagged
@@ -6192,6 +6677,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6162982780678476510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564401293570877430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &7782701527066163912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6339,6 +6838,7 @@ GameObject:
   - component: {fileID: 7874254144872089402}
   - component: {fileID: 9074806112628258096}
   - component: {fileID: 7358652389441499890}
+  - component: {fileID: 4786951881356996044}
   m_Layer: 5
   m_Name: MinoSocket (01, 01)
   m_TagString: Untagged
@@ -6403,6 +6903,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4786951881356996044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789325679441109873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &7852963533376657368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6414,6 +6928,7 @@ GameObject:
   - component: {fileID: 5068173911610001640}
   - component: {fileID: 5440996491604143620}
   - component: {fileID: 3035730019992597562}
+  - component: {fileID: 2690343841567638424}
   m_Layer: 5
   m_Name: MinoSocket (04, 03)
   m_TagString: Untagged
@@ -6478,6 +6993,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2690343841567638424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7852963533376657368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 0
 --- !u!1 &7875816584967843212
 GameObject:
   m_ObjectHideFlags: 0
@@ -6625,6 +7154,7 @@ GameObject:
   - component: {fileID: 5255595873068761013}
   - component: {fileID: 3434352989163086747}
   - component: {fileID: 3820002880572610915}
+  - component: {fileID: 1122053630496903754}
   m_Layer: 5
   m_Name: MinoSocket (06, 01)
   m_TagString: Untagged
@@ -6689,6 +7219,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1122053630496903754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216401396994212047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &8226381869268310548
 GameObject:
   m_ObjectHideFlags: 0
@@ -6700,6 +7244,7 @@ GameObject:
   - component: {fileID: 1269702990658878309}
   - component: {fileID: 3294638083677842296}
   - component: {fileID: 5174078221460024629}
+  - component: {fileID: 3492865655909113671}
   m_Layer: 5
   m_Name: MinoSocket (05, 02)
   m_TagString: Untagged
@@ -6764,6 +7309,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3492865655909113671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226381869268310548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &8232317711134756364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6911,6 +7470,7 @@ GameObject:
   - component: {fileID: 1389345700978117884}
   - component: {fileID: 5607276038204803191}
   - component: {fileID: 3656503675350571967}
+  - component: {fileID: 8041190949914739029}
   m_Layer: 5
   m_Name: MinoSocket (02, 06)
   m_TagString: Untagged
@@ -6975,6 +7535,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8041190949914739029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371378693734101261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3
 --- !u!1 &8419715889486507957
 GameObject:
   m_ObjectHideFlags: 0
@@ -6986,6 +7560,7 @@ GameObject:
   - component: {fileID: 6472249952876453632}
   - component: {fileID: 6404122607658761402}
   - component: {fileID: 1080726594260736156}
+  - component: {fileID: 3462218767145447169}
   m_Layer: 5
   m_Name: MinoSocket (05, 03)
   m_TagString: Untagged
@@ -7050,6 +7625,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3462218767145447169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419715889486507957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 2
 --- !u!1 &8820959747181466488
 GameObject:
   m_ObjectHideFlags: 0
@@ -7674,6 +8263,7 @@ GameObject:
   - component: {fileID: 6950791893139863049}
   - component: {fileID: 3979919518466058155}
   - component: {fileID: 9012876358596148894}
+  - component: {fileID: 4990544241286649259}
   m_Layer: 5
   m_Name: MinoSocket (06, 03)
   m_TagString: Untagged
@@ -7738,3 +8328,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4990544241286649259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968140090180176441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minoIndex: 0
+  <Tier>k__BackingField: 3

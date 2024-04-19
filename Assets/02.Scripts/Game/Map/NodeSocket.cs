@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TetrisDefence.Data;
 using UnityEngine;
 
 namespace TetrisDefence.Game.Map
@@ -14,8 +13,10 @@ namespace TetrisDefence.Game.Map
         private TowerNode _towerNode = default;
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             MapOfNodes.Register(this);
             _roadNodes = new List<RoadNode> (GetComponentsInChildren<RoadNode>());
             _towerNode = GetComponentInChildren<TowerNode>();

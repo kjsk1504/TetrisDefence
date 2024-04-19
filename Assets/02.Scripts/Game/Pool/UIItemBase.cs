@@ -10,21 +10,15 @@ namespace TetrisDefence.Game.Pool
 {
     public class UIItemBase : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        public EMino mino;
+        public EMino minoIndex;
         public MinoBase minoPrefab;
         public TMP_Text textQuantity;
-        public bool isDrag;
         private int _quantity = 0;
 
 
-        protected virtual void Awake()
-        {
-            isDrag = false;
-        }
-
         private void Start()
         {
-            InventoryManager.Instance.onQuantitiesChanged[(int)mino] += (delta) => 
+            InventoryManager.Instance.onQuantitiesChanged[(int)minoIndex] += (delta) => 
                 {
                     _quantity += delta;
                     textQuantity.text = _quantity.ToString("d3");
@@ -35,12 +29,17 @@ namespace TetrisDefence.Game.Pool
         {
             if (_quantity > 0)
             {
-                InventoryManager.Instance.ItemUpdate((int)mino, -1);
-                minoPrefab = PoolManager.Instance.GetMino(mino);
+                InventoryManager.Instance.ItemUpdate((int)minoIndex, -1);
+                minoPrefab = PoolManager.Instance.GetMino(minoIndex);
                 minoPrefab.transform.SetParent(transform);
                 minoPrefab.transform.position = transform.position;
                 minoPrefab.gameObject.SetActive(true);
-                isDrag = true;
+                minoPrefab.isDrag = true;
+
+                if (TowerManager.Instance.isUIActive)
+                {
+                    minoPrefab.transform.SetParent(TowerManager.Instance.towerInfoUI.minos);
+                }
             }
             else
             {
@@ -50,35 +49,13 @@ namespace TetrisDefence.Game.Pool
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (isDrag)
-            {
-                minoPrefab.GetComponent<RectTransform>().anchoredPosition += eventData.delta;
-            }
+            minoPrefab.OnDrag(eventData);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (isDrag)
-            {
-                RaycastResult result = eventData.pointerCurrentRaycast;
-                print($"[UIItemBase]: RaycastResult {result}");
-                if (result.gameObject != null)
-                {
-                    var canvas = result.gameObject.GetComponentInParent<UITowerInformation>();
-                    if (canvas != null)
-                    {
-                        canvas.RegisterMino(minoPrefab);
-                        minoPrefab.transform.SetParent(canvas.minos);
-                        minoPrefab.transform.position = eventData.position;
-                        isDrag = false;
-
-                        return;
-                    }
-                }
-
-                minoPrefab.Death();
-                InventoryManager.Instance.ItemUpdate((int)mino, +1);
-            }
+            minoPrefab.OnEndDrag(eventData);
+            minoPrefab = null;
         }
     }
 }

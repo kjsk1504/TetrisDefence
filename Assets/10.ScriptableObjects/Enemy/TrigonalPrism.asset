@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd685f1283eb3484080ec88155916713, type: 3}
-  m_Name: QuadgonalPrism
+  m_Name: TrigonalPrism
   m_EditorClassIdentifier: 
-  <Index>k__BackingField: 4
-  <Damage>k__BackingField: 20
-  <Speed>k__BackingField: 1.1
-  <ChildIndex>k__BackingField: 3
+  index: 3
+  damage: 10
+  speed: 1.1
+  childIndex: 0

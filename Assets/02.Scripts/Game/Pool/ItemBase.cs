@@ -1,7 +1,5 @@
 using System;
-using TetrisDefence.Data.Manager;
 using TetrisDefence.Data.Enums;
-using Unity.Collections;
 using UnityEngine;
 
 namespace TetrisDefence.Game.Pool
@@ -14,8 +12,10 @@ namespace TetrisDefence.Game.Pool
     {
         public EItem itemIndex;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             if (itemIndex == 0)
             {
                 if (!Enum.TryParse(name, out itemIndex))
@@ -24,7 +24,7 @@ namespace TetrisDefence.Game.Pool
                 }
             }
 
-            poolIndex = itemIndex.ToString();
+            PoolIndex = itemIndex.ToString();
         }
     }
 }

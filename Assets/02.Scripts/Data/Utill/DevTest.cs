@@ -1,4 +1,7 @@
+using System;
+using TetrisDefence.Data.Enums;
 using TetrisDefence.Data.Manager;
+using TetrisDefence.Game.Pool;
 using TetrisDefence.UI;
 using TMPro;
 using UnityEngine;
@@ -13,6 +16,7 @@ namespace TetrisDefence.Data.Utill
         public TMP_Text textGameTime;
         public Button[] speedButtons;
         public Button[] functionButtons;
+        //public TMP_Dropdown spawn;
         public TMP_Text textMousePosition;
         public TMP_Text textInputString;
         private KeyCode _oldKeyCode;
@@ -56,14 +60,18 @@ namespace TetrisDefence.Data.Utill
                 speedButtons[1].GetComponent<Image>().color = speedButtons[1].colors.normalColor;
                 speedButtons[2].GetComponent<Image>().color = speedButtons[2].colors.highlightedColor;
             });
-            functionButtons[0].onClick.AddListener(() =>
-            {
-                TowerManager.Instance.ShootAllTowers();
-            });
-            functionButtons[1].onClick.AddListener(() =>
-            {
-                BuyAllMinos();
-            });
+
+            functionButtons[0].onClick.AddListener(ShootAllTowers);
+            functionButtons[1].onClick.AddListener(BuyAllMinos);
+            functionButtons[2].onClick.AddListener(GetMoney);
+            functionButtons[3].onClick.AddListener(ClearAllMonster);
+            functionButtons[4].onClick.AddListener(SpawnAllMonster);
+
+            //spawn.onValueChanged.AddListener((value) =>
+            //{
+            //    spawn.value = value;
+            //    MobManager.Instance.MobSpawn(value);
+            //});
         }
 
         private void Start()
@@ -105,11 +113,40 @@ namespace TetrisDefence.Data.Utill
             }
         }
 
-        public void BuyAllMinos()
+        private void ShootAllTowers()
         {
-            for (int ix = 0; ix < 7; ix++)
+            foreach (var tower in TowerManager.Instance.towers)
+            {
+                tower.Shoot();
+            }
+        }
+
+        private void BuyAllMinos()
+        {
+            for (int ix = 0; ix < Enum.GetValues(typeof(EMino)).Length; ix++)
             {
                 InventoryManager.Instance.ItemUpdate(ix, +1);
+            }
+        }
+
+        private void GetMoney()
+        {
+            GameManager.Instance.MoneyChange(1000);
+        }
+
+        private void SpawnAllMonster()
+        {
+            for (int ix = 3; ix < 9; ix++)
+            {
+                MobManager.Instance.MobSpawn(ix);
+            }
+        }
+
+        private void ClearAllMonster()
+        {
+            for (int ix = 3; ix < 9; ix++)
+            {
+                PoolManager.Instance.pooledItems[(EItem)ix].Clear();
             }
         }
 

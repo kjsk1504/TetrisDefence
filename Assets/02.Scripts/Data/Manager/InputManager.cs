@@ -28,6 +28,8 @@ namespace TetrisDefence.Data.Manager
         public bool IsESCKeyDown { get; private set; } = default;
         /// <summary> 키보드 <see cref="KeyCode.Space"/>키가 눌렸는지 여부 </summary>
         public bool IsSpaceBarKeyDown { get; private set; } = default;
+        /// <summary> 키보드 <see cref="KeyCode.R"/>키가 눌렸는지 여부 </summary>
+        public bool isRKeyDown { get; private set; } = default;
         /// <summary> 마우스 왼쪽 버튼이 눌렸는지 여부 </summary>
         public bool IsMouseLeftClickedDown { get; private set; } = default;
         /// <summary> 마우스 왼쪽 버튼이 눌리는 중인지 여부 </summary>
@@ -72,6 +74,7 @@ namespace TetrisDefence.Data.Manager
             IsEnterKeyDown = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
             IsESCKeyDown = Input.GetKeyDown(KeyCode.Escape);
             IsSpaceBarKeyDown = Input.GetKeyDown(KeyCode.Space);
+            isRKeyDown = Input.GetKeyDown(KeyCode.R);
             IsMouseLeftClickedDown = Input.GetMouseButtonDown(0);
             IsMouseLeftClicking = Input.GetMouseButton(0);
             IsMouseLeftClickedUp = Input.GetMouseButtonUp(0);

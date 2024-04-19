@@ -3,6 +3,7 @@ using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Map;
 using TetrisDefence.Data.Enums;
 using UnityEngine;
+using System;
 
 namespace TetrisDefence.Game.Pool
 {
@@ -21,12 +22,12 @@ namespace TetrisDefence.Game.Pool
 
         private void Start()
         {
-            if (itemIndex != enemyInfo.Index)
+            if (itemIndex != enemyInfo.index)
             {
-                throw new System.Exception($"[EnemyBase]: {enemyInfo}가 잘못됨");
+                throw new Exception($"[EnemyBase]: {enemyInfo}가 잘못됨");
             }
 
-            _childIndex = enemyInfo.ChildIndex;
+            _childIndex = enemyInfo.childIndex;
 
             if ((int)_childIndex != (int)itemIndex - 1)
             {
@@ -38,11 +39,17 @@ namespace TetrisDefence.Game.Pool
             }
         }
 
+        private void OnDisable()
+        {
+            MobManager.Instance.EnemyUnregister(this);
+        }
+
         public override void Born()
         {
             base.Born();
 
-            Initialize();
+            InforamtionInitialization();
+            MobManager.Instance.EnemyRegister(this);
             Move();
         }
 
@@ -98,15 +105,15 @@ namespace TetrisDefence.Game.Pool
         {
             if (CurrentRoadIndex >= MapOfNodes.roads.Length)
             {
-                GameManager.Instance.NexusHP -= _hp;
+                GameManager.Instance.NexusHPChange(-_hp);
                 Death();
             }
         }
 
-        private void Initialize()
+        private void InforamtionInitialization()
         {
-            _hp = enemyInfo.Damage;
-            _moveSpeed = enemyInfo.Speed;
+            _hp = enemyInfo.damage;
+            _moveSpeed = enemyInfo.speed;
         }
 
         private IEnumerator C_MoveFirstHalf()

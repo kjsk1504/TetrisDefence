@@ -39,6 +39,5 @@ namespace TetrisDefence.Data.Utill
 
         /// <summary> 정적 인스턴스 필드 </summary>
         private static T s_instance;
-
     }
 }

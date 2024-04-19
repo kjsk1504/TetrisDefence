@@ -42,12 +42,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4074131522282386607}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6dd14c2d5bf3ee4fa205bd7f957b702, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f71b9f68d06327469894472ceb86f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoadIndex: 0
-  Child: {fileID: 1958362292450035066}
-  moveSpeed: 0
+  poolIndex: 
+  itemIndex: 0
+  <CurrentRoadIndex>k__BackingField: 0
+  enemyInfo: {fileID: 11400000, guid: 16518ab05f853b445a5b2e4434aac318, type: 2}
 --- !u!114 &-5300749698369944967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +58,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4074131522282386607}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9eae060df6819fd46afd74255d8b5d44, type: 3}
+  m_Script: {fileID: 11500000, guid: a6cc72836d9c08240af0931bb6975825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolIndex: 
+  minoInfo: {fileID: 11400000, guid: f044f60411493d345a84a1d9c435703f, type: 2}
+  isDrag: 0
+  minoIndex: 0

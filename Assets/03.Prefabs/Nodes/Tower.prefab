@@ -74,10 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de48e8ea4c06c87429a2704c6513a789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolIndex: 
   itemIndex: 2
-  <TowerIndex>k__BackingField: 0
   <TowerLocation>k__BackingField: 0000000000000000
-  <Tier>k__BackingField: 0
+  <Tier>k__BackingField: 1
+  towerIndex: 0
   bulletPrefab: {fileID: 4831694325685892778, guid: 41e5831ce00ee344689d7e71523f841f, type: 3}
   barrel: {fileID: 7665814718026361576}
   muzzle: {fileID: 8300177839003338257}

@@ -10,10 +10,16 @@ namespace TetrisDefence.Game.Pool
     /// </summary>
     public class PoolBase : MonoBehaviour, IPool
     {
-        public string poolIndex;
+        [field: SerializeField] public string PoolIndex { get; protected set; }
+
         public event Action<IPool> onBorn;
         public event Action<IPool> onDeath;
 
+
+        protected virtual void Awake()
+        {
+            name = name.Replace("(Clone)", "");
+        }
 
         protected virtual void OnEnable()
         {

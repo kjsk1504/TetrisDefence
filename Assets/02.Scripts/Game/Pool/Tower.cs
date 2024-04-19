@@ -8,23 +8,25 @@ namespace TetrisDefence.Game.Pool
 {
     public class Tower : ItemBase
     {
-        [field: SerializeField] public int TowerIndex { get; set; } = default;
         [field: SerializeField] public int[] TowerLocation { get; private set; } = new int[2];
-        [field: SerializeField] public int Tier { get; private set; } = default;
+        [field: SerializeField] public int Tier { get; private set; } = 1;
 
+        public int towerIndex = default;
         public Bullet bulletPrefab;
         public GameObject barrel;
         public GameObject muzzle;
         public Collider attackRange;
+        public TowerInfo towerInfo = new ();
 
-        private TowerInfo _towerinfo = new ();
         private float _attackDelay = 0;
         [SerializeField] private List<EnemyBase> _targets;
         [SerializeField] private List<Bullet> _bullets;
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             if (!attackRange)
             {
                 attackRange = GetComponentInChildren<Collider>();
@@ -34,8 +36,7 @@ namespace TetrisDefence.Game.Pool
         private void Start()
         {
             TowerLocation = transform.GetComponentInParent<NodeSocket>().Location;
-            _towerinfo = new TowerInfo(TowerIndex, TowerLocation, Tier, new int[7]);
-            attackRange.transform.localScale = Vector3.one * _towerinfo.AttackRange;
+            towerInfo = new TowerInfo(towerIndex, TowerLocation, Tier, new int[7], updateTower);
         }
 
         private void Update()
@@ -59,7 +60,7 @@ namespace TetrisDefence.Game.Pool
                 barrel.transform.up = direction;
             }
 
-            if (_attackDelay > _towerinfo.AttackCooldown)
+            if (_attackDelay > towerInfo.AttackCooldown)
             {
                 Shoot();
                 _attackDelay = 0;
@@ -73,7 +74,7 @@ namespace TetrisDefence.Game.Pool
 
         private void OnMouseDown()
         {
-            TowerManager.Instance.TowerSelection(_towerinfo);
+            TowerManager.Instance.TowerSelection(this);
         }
 
         public override void Born()
@@ -95,8 +96,8 @@ namespace TetrisDefence.Game.Pool
         public void Shoot()
         {
             PoolManager.Instance.GetBullet(onBorn: AddToList, onDeath: RemoveFromList)
-                .Set(muzzle.transform.position, barrel.transform.rotation, _towerinfo.AttackSpeed, _towerinfo.AttackDamage, 
-                     (_towerinfo.AttackRange/2 - 1) / _towerinfo.AttackSpeed, _towerinfo.SlowTime, _towerinfo.DotTime)
+                .Set(muzzle.transform.position, barrel.transform.rotation, towerInfo.AttackSpeed, towerInfo.AttackDamage, 
+                     (towerInfo.AttackRange/2 - 1) / towerInfo.AttackSpeed, towerInfo.SlowTime, towerInfo.DotTime)
                 .transform.SetParent(transform);
         }
 
@@ -122,6 +123,11 @@ namespace TetrisDefence.Game.Pool
             {
                 _targets.Add((EnemyBase)pool);
             }
+        }
+        private void updateTower()
+        {
+            attackRange.transform.localScale = Vector3.one * towerInfo.AttackRange;
+            Tier = towerInfo.TowerTier;
         }
     }
 }

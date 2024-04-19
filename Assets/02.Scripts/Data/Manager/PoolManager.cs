@@ -33,7 +33,6 @@ namespace TetrisDefence.Data.Manager
                     {
                         var item = Instantiate(ItemPrefabs[(int)itemIndex].GetComponent<ItemBase>());
                         item.transform.SetParent(itemObjects.transforms[(int)itemIndex]);
-                        item.name = item.name.Replace("(Clone)", "");
                         item.gameObject.SetActive(false);
                         return item;
                     },
@@ -48,6 +47,11 @@ namespace TetrisDefence.Data.Manager
                         item.transform.SetParent(itemObjects.transforms[(int)itemIndex]);
                         item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                         item.gameObject.SetActive(false);
+                    },
+                    actionOnDestroy: (item) =>
+                    {
+                        print(item);
+                        Release(item);
                     }
                 );
             }
@@ -63,7 +67,6 @@ namespace TetrisDefence.Data.Manager
                     {
                         var mino = Instantiate(MinoPrefabs[(int)minoIndex].GetComponent<MinoBase>());
                         mino.transform.SetParent(minoObjects.transforms[(int)minoIndex]);
-                        mino.name = mino.name.Replace("(Clone)", "");
                         mino.gameObject.SetActive(false);
                         return mino;
                     },
@@ -78,6 +81,11 @@ namespace TetrisDefence.Data.Manager
                         mino.transform.SetParent(minoObjects.transforms[(int)minoIndex]);
                         mino.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                         mino.gameObject.SetActive(false);
+                    },
+                    actionOnDestroy: (item) =>
+                    {
+                        print(item);
+                        Release(item);
                     }
                 );
             }
@@ -151,11 +159,11 @@ namespace TetrisDefence.Data.Manager
 
         public void Release(PoolBase pool)
         {
-            if (Enum.TryParse(pool.poolIndex, out EItem itemIndex))
+            if (Enum.TryParse(pool.PoolIndex, out EItem itemIndex))
             {
                 pooledItems[itemIndex].Release((ItemBase)pool);
             }
-            else if (Enum.TryParse(pool.poolIndex, out EMino minoIndex))
+            else if (Enum.TryParse(pool.PoolIndex, out EMino minoIndex))
             {
                 pooledMinos[minoIndex].Release((MinoBase)pool);
             }

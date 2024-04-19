@@ -28,7 +28,7 @@ namespace TetrisDefence.Game.Pool
         private int _minoO = default;
 
 
-        public TowerInfo(int index, int[] location, int tier, int[] tetris)
+        public TowerInfo(int index, int[] location, int tier, int[] tetris, Action onUpdateTower = null)
         {
             if (location.Length != 2 || tetris.Length != 7)
             {
@@ -40,17 +40,26 @@ namespace TetrisDefence.Game.Pool
             TowerTier = tier;
             TowerTetris = tetris;
 
+            if (onUpdateTower != null) OnUpdateTower += onUpdateTower;
+
             UpdateMinos();
         }
 
-        public TowerInfo(int index = 0, int location_row = 0, int location_col = 0, int tier = 1, int i = 0, int t = 0, int j = 0, int l = 0, int s = 0, int z = 0, int o = 0)
+        public TowerInfo(int index = 0, int location_row = 0, int location_col = 0, int tier = 1, int i = 0, int t = 0, int j = 0, int l = 0, int s = 0, int z = 0, int o = 0, Action onUpdateTower = null)
         {
             TowerIndex = index;
             TowerLocation = new int[2] { location_row, location_col };
             TowerTier = tier;
             TowerTetris = new int[7] { i, t, j, l, s, z, o};
 
+            if (onUpdateTower != null) OnUpdateTower += onUpdateTower;
+
             UpdateMinos();
+        }
+
+        public void TierUp()
+        {
+            TowerTier += 1;
         }
 
         public void UpdateTetris(int[] tetris)
