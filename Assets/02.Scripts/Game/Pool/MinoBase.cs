@@ -95,21 +95,14 @@ namespace TetrisDefence.Game.Pool
                 {
                     var canvas = result.gameObject.GetComponentInParent<UITowerInformation>();
 
-                    if (canvas)
+                    if (result.gameObject.TryGetComponent<MinoSocket>(out var minoSocket))
                     {
-                        var raycastResults = UIManager.Instance.RayCastAll();
+                        canvas.RegisterMino(this);
+                        transform.SetParent(canvas.minos);
+                        transform.position = eventData.position;
+                        //todo: 위치를 소켓의 중앙에 맞추기
 
-                        foreach (var raycastResult in raycastResults)
-                        {
-                            if (raycastResult.gameObject.TryGetComponent<MinoSocket>(out var minoSocket))
-                            {
-                                canvas.RegisterMino(this);
-                                transform.SetParent(canvas.minos);
-                                //todo: 위치를 딱 맞추기
-
-                                return;
-                            }
-                        }
+                        return;
                     }
                 }
 

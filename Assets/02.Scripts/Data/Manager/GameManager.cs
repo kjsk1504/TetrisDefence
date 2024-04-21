@@ -8,8 +8,9 @@ namespace TetrisDefence.Data.Manager
 {
     public class GameManager : SingletonMonoBase<GameManager>
     {
-        public TMP_Text _heartText;
-        public TMP_Text _coninsText;
+        public Button quitButton;
+        public TMP_Text heartText;
+        public TMP_Text coninsText;
         private float _nexusHP = 1000;
         private int _money = 0;
 
@@ -18,22 +19,33 @@ namespace TetrisDefence.Data.Manager
         {
             base.Awake();
 
-            _heartText = GameObject.Find("Text (TMP) - HP").GetComponent<TMP_Text>();
-            _coninsText = GameObject.Find("Text (TMP) - Money").GetComponent<TMP_Text>();
-            _heartText.text = Mathf.RoundToInt(_nexusHP).ToString();
-            _coninsText.text = Mathf.RoundToInt(_money).ToString();
+            quitButton = GameObject.Find("Button - GameQuit").GetComponent<Button>();
+            heartText = GameObject.Find("Text (TMP) - HP").GetComponent<TMP_Text>();
+            coninsText = GameObject.Find("Text (TMP) - Money").GetComponent<TMP_Text>();
+            quitButton.onClick.AddListener(GameExit);
+            heartText.text = Mathf.RoundToInt(_nexusHP).ToString();
+            coninsText.text = Mathf.RoundToInt(_money).ToString();
+        }
+
+        public void GameExit()
+        {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
         }
 
         public void NexusHPChange(float amount)
         {
             _nexusHP += amount;
-            _heartText.text = Mathf.RoundToInt(_nexusHP).ToString();
+            heartText.text = Mathf.RoundToInt(_nexusHP).ToString();
         }
 
         public void MoneyChange(int amount)
         {
             _money += amount;
-            _coninsText.text = Mathf.RoundToInt(_money).ToString();
+            coninsText.text = Mathf.RoundToInt(_money).ToString();
         }
     }
 }

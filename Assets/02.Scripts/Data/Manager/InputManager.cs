@@ -8,6 +8,8 @@ namespace TetrisDefence.Data.Manager
     /// </summary>
     public class InputManager : SingletonMonoBase<InputManager>
     {
+        /// <summary> 키보드 <see cref="KeyCode.LeftControl"/>키와 <see cref="KeyCode.BackQuote"/>가 눌렸는지 여부 </summary>
+        public bool DevConsole { get; private set; } = default;
         /// <summary> 매프레임마다 키보드로 입력한 키 </summary>
         public string InputString { get; private set; } = default;
         /// <summary> 현재 픽셀 좌표상의 마우스 위치 </summary>
@@ -64,6 +66,7 @@ namespace TetrisDefence.Data.Manager
 
         private void Update()
         {
+            DevConsole = Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.BackQuote);
             InputString = Input.inputString;
             MousePosition = Input.mousePosition;
             IsAnyKeyDown = Input.anyKeyDown;

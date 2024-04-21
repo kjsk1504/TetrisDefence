@@ -2,7 +2,6 @@ using System;
 using TetrisDefence.Data.Enums;
 using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Pool;
-using TetrisDefence.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,9 +21,12 @@ namespace TetrisDefence.Data.Utill
         private KeyCode _oldKeyCode;
         private EventType _oldKeyType;
         private string _oldString;
+        private Canvas _canvas;
 
         private void Awake()
         {
+            _canvas = GetComponent<Canvas>();
+            _canvas.enabled = false;
             sliderGameSpeed.onValueChanged.AddListener((value) =>
             {
                 Time.timeScale = value;
@@ -88,6 +90,11 @@ namespace TetrisDefence.Data.Utill
 
             textInputString.text = _oldString;
             textMousePosition.text = InputManager.Instance.MousePosition.ToString("f0");
+
+            if (InputManager.Instance.DevConsole)
+            {
+                _canvas.enabled = !_canvas.enabled;
+            }
         }
 
         private void OnGUI()
@@ -144,9 +151,11 @@ namespace TetrisDefence.Data.Utill
 
         private void ClearAllMonster()
         {
-            for (int ix = 3; ix < 9; ix++)
+            var enemies = MobManager.Instance.EnemyList.ToArray();
+
+            foreach (PoolBase enemy in enemies)
             {
-                PoolManager.Instance.pooledItems[(EItem)ix].Clear();
+                enemy.Death();
             }
         }
 

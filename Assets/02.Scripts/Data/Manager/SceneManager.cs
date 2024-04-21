@@ -5,6 +5,9 @@ namespace TetrisDefence
 {
     public class SceneManager : SingletonMonoBase<SceneManager>
     {
-		
+		public void LoginScene()
+        {
+
+        }
     }
 }
