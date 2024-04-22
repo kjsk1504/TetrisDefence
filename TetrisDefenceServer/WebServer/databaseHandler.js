@@ -1,6 +1,4 @@
-// mysql 모듈.
 const mysql = require('mysql');
-// 접속.
 const connection = mysql.createConnection({
     user : "root",
     password : "0000",
@@ -26,11 +24,11 @@ function queryToDB(request, response, dbQuery) {
             response.writeHead(200, {"Content-Type" : "text/plain; charset=utf-8"});
             response.end("쿼리 처리 오류: " + error);
         } else {
-            if (results.length > 0) {   // 결과가 있는 경우.
+            if (results.length > 0) {
                 response.writeHead(200, {"Content-Type" : "text/plain; charset=utf-8"});
                 response.end(JSON.stringify(results));
                 console.log(results);
-            } else {                    // 결과가 없는 경우.
+            } else {
                 response.writeHead(200, {"Content-Type" : "text/plain; charset=utf-8"});
                 response.end("결과 없음");
                 console.log("결과 없음");

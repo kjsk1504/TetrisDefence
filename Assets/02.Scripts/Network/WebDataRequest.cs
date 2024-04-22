@@ -28,16 +28,16 @@ public class WebDataRequest : SingletonMonoBase<WebDataRequest>
         _reConnect.onClick.AddListener(ConnectionCheck);
     }
 
-    //private void OnEnable()
-    //{
-    //    Process.Start(".\\TetrisDefenceServer\\DB_Server_Start.bat");
-    //    Process.Start(".\\TetrisDefenceServer\\Web_Server_Start.bat");
-    //}
+    private void OnEnable()
+    {
+        //Process.Start(".\\TetrisDefenceServer\\DB_Server_Start.bat");
+        Process.Start(".\\TetrisDefenceServer\\Web_Server_Start.bat");
+    }
 
-    //private void OnDisable()
-    //{
-    //    Process.Start("taskkill.exe", "/f /im node.exe");
-    //}
+    private void OnDisable()
+    {
+        Process.Start("taskkill.exe", "/f /im node.exe");
+    }
 
     /// <summary>
     /// <see langword="URL"/>을 만듬
