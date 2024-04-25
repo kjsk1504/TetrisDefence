@@ -1,5 +1,6 @@
 using System;
 using TetrisDefence.Data.Utill;
+using TetrisDefence.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace TetrisDefence.Data.Manager
         public Button quitButton;
         public TMP_Text heartText;
         public TMP_Text coninsText;
-        private float _nexusHP = 1000;
+        private int _nexusHP = 100;
         private int _money = 0;
 
 
@@ -36,16 +37,23 @@ namespace TetrisDefence.Data.Manager
         #endif
         }
 
-        public void NexusHPChange(float amount)
+        public void NexusHPChange(int amount)
         {
             _nexusHP += amount;
-            heartText.text = Mathf.RoundToInt(_nexusHP).ToString();
+            heartText.text = _nexusHP.ToString();
         }
 
-        public void MoneyChange(int amount)
+        public bool MoneyChange(int amount)
         {
+            if (_money + amount < 0)
+            {
+                UIManager.Instance.Get<UINotifyingWindow>().Show("돈이 부족합니다.");
+                return false;
+            }
+
             _money += amount;
             coninsText.text = Mathf.RoundToInt(_money).ToString();
+            return true;
         }
     }
 }

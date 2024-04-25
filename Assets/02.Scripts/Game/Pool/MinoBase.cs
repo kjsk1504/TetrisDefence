@@ -16,7 +16,7 @@ namespace TetrisDefence.Game.Pool
         public int rotationNumber;
         public int[,] relativeLocations = new int[4, 2];
         // todo: 미노의 위치, 크기, 회전각 등을 저장해서 타워인포에 전달
-        // todo: 미노의 드래그가 끝나면 타워 소켓의 위치에 알아서 맞춰서 붙기
+        // todo: 움직일때마다 mino및 _tetris에 변화
 
 
         private void Start()
@@ -72,6 +72,7 @@ namespace TetrisDefence.Game.Pool
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            //todo: 이미 타워 UI에 저장된 경우 이동 불가
             isDrag = true;
         }
 
@@ -94,15 +95,21 @@ namespace TetrisDefence.Game.Pool
                 if (result.gameObject != null)
                 {
                     var canvas = result.gameObject.GetComponentInParent<UITowerInformation>();
-
-                    if (result.gameObject.TryGetComponent<MinoSocket>(out var minoSocket))
+                    if (canvas != null)
                     {
                         canvas.RegisterMino(this);
-                        transform.SetParent(canvas.minos);
-                        transform.position = eventData.position;
-                        //todo: 위치를 소켓의 중앙에 맞추기
 
-                        return;
+                        foreach (var socket in canvas.sockets)
+                        {
+                            if (socket.ComparePosition(eventData.position))
+                            {
+                                print(socket.name);
+                                transform.position = socket.transform.position;
+                                //todo: 미노의 다른 부분도 소켓에 영향을 주도록 
+                                return;
+                            }
+                        }
+                        canvas.UnregisterMino(this);
                     }
                 }
 

@@ -35,8 +35,8 @@ namespace TetrisDefence.Game.Pool
 
         private void Start()
         {
-            TowerLocation = transform.GetComponentInParent<NodeSocket>().Location;
-            towerInfo = new TowerInfo(towerIndex, TowerLocation, Tier, new int[7], updateTower);
+            //TowerLocation = transform.GetComponentInParent<NodeSocket>().Location; //todo: towerlocation을 드래그가 끝난 시점에 부여
+            towerInfo = new TowerInfo(towerIndex, TowerLocation, Tier, new int[7], UpdateTower);
         }
 
         private void Update()
@@ -124,7 +124,7 @@ namespace TetrisDefence.Game.Pool
                 _targets.Add((EnemyBase)pool);
             }
         }
-        private void updateTower()
+        private void UpdateTower()
         {
             attackRange.transform.localScale = Vector3.one * towerInfo.AttackRange;
             Tier = towerInfo.TowerTier;

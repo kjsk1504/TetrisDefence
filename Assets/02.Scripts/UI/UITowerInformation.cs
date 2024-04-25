@@ -14,6 +14,7 @@ namespace TetrisDefence.UI
     {
         public Transform minos;
         public Tower tower;
+        public MinoSocket[,] sockets;
 
         [SerializeField] private Image outPanel;
         [SerializeField] private TMP_Text _no;
@@ -30,13 +31,13 @@ namespace TetrisDefence.UI
         private TowerInfo _towerInfo;
 
 
-        //todo : reset, save, sell, tierup 버튼 구현
-        //todo : 미노가 소켓 중 활성화되지 않은 소켓에 닿으면 세이브 버튼 비활성화 및 색으로 알려주기
+        //todo : 기존의 미노 반영
 
         protected override void Awake()
         {
             base.Awake();
 
+            sockets = new MinoSocket[6, 6];
             Hide();
             onHide += () => tower.towerInfo.OnUpdateTower -= ActivateSockets;
         }
@@ -45,6 +46,7 @@ namespace TetrisDefence.UI
         {
             if (eventData.pointerCurrentRaycast.gameObject == outPanel.gameObject)
             {
+                ResetRegister(); //todo: 기존의 미노 반영
                 Hide();
             }
         }
@@ -53,24 +55,17 @@ namespace TetrisDefence.UI
         {
             base.Show();
 
-            _towerInfo = tower.towerInfo;
+            _towerInfo = new TowerInfo(tower.towerInfo);
             UIUpdate();
             GetTetris();
             ActivateSockets();
             tower.towerInfo.OnUpdateTower += ActivateSockets;
         }
 
-        public override void Hide()
-        {
-            base.Hide();
-
-            ResetRegister();
-        }
-
         public void RegisterMino(MinoBase mino)
         {
             _minos.Add(mino);
-            AddToTetris(mino.minoIndex);
+            _tetris[(int)mino.minoIndex - 1] += 1;
             _towerInfo.UpdateTetris(_tetris);
         }
 
@@ -82,20 +77,26 @@ namespace TetrisDefence.UI
 
         public void ResetRegister()
         {
+            //todo: 기존의 미노의 반영
             var minos = _minos.ToArray();
 
             foreach (var mino in minos)
             {
                 UnregisterMino(mino);
+                _tetris[(int)mino.minoIndex - 1] -= 1;
                 InventoryManager.Instance.ItemUpdate((int)mino.minoIndex, 1);
             }
+            _towerInfo = new (tower.towerInfo);
+            
+            UIUpdate();
+            ActivateSockets();
         }
-
+        
         public void SaveMinos()
         {
             if (VerifingAllTetris())
             {
-                tower.towerInfo.UpdateTetris(_tetris);
+                tower.towerInfo = _towerInfo;
             }
             else
             {
@@ -107,6 +108,7 @@ namespace TetrisDefence.UI
         {
             tower.Death();
             GameManager.Instance.MoneyChange(50);
+            Hide();
         }
 
         public void TowerTierUp()
@@ -130,13 +132,8 @@ namespace TetrisDefence.UI
 
         private void GetTetris()
         {
-            _tetris = tower.towerInfo.TowerTetris;
-            // todo: mino를 _tetris에 맞게 배치
-        }
-
-        private void AddToTetris(EMino minoIndex)
-        {
-            _tetris[(int)minoIndex - 1] += 1;
+            _tetris = _towerInfo.TowerTetris;
+            // todo: mino를 _tetris에 저장된 내용에 맞게 배치
         }
 
         private bool VerifingAllTetris()
@@ -165,18 +162,9 @@ namespace TetrisDefence.UI
 
         private void ActivateSockets()
         {
-            var sockets = GetComponentsInChildren<MinoSocket>();
-
             foreach (var socket in sockets)
             {
-                if (socket.Tier <= _towerInfo.TowerTier)
-                {
-                    socket.Activate();
-                }
-                else
-                {
-                    socket.Deactivate();
-                }
+                socket.CheckActivated(_towerInfo.TowerTier);
             }
         }
     }

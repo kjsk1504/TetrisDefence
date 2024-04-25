@@ -11,6 +11,7 @@ namespace TetrisDefence.Game.Pool
     public class PoolBase : MonoBehaviour, IPool
     {
         [field: SerializeField] public string PoolIndex { get; protected set; }
+        public bool IsReleased { get; protected set; }
 
         public event Action<IPool> onBorn;
         public event Action<IPool> onDeath;
@@ -28,14 +29,21 @@ namespace TetrisDefence.Game.Pool
 
         public virtual void Born()
         {
-            onDeath = null;
+            IsReleased = false;
             onBorn?.Invoke(this);
         }
 
         public virtual void Death()
         {
-            onDeath?.Invoke(this);
-            PoolManager.Instance.Release(this);
+            if (!IsReleased)
+            {
+                onDeath?.Invoke(this);
+                onBorn = null;
+                onDeath = null;
+                PoolManager.Instance.Release(this);
+            }
+
+            IsReleased = true;
         }
 
         protected PoolBase ActiveSelf()

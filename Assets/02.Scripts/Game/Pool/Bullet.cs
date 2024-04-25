@@ -10,7 +10,7 @@ namespace TetrisDefence.Game.Pool
         [ReadOnly, SerializeField] private Vector3 translate = default;
         [ReadOnly, SerializeField] private float angleRad = default;
         private float _bulletSpeed = default;
-        private float _bulletDamage = default;
+        private int _bulletDamage = default;
         private float _bulletLifeTime = default;
         private float _dotTime = default;
         private float _slowTime = default;
@@ -38,7 +38,7 @@ namespace TetrisDefence.Game.Pool
             base.Death();
         }
 
-        public Bullet Set(Vector3 position, Quaternion rotation, float speed, float damage, float lifetime, float slow = 0, float dot = 0)
+        public Bullet Set(Vector3 position, Quaternion rotation, float speed, int damage, float lifetime, float slow = 0, float dot = 0)
         {
             DeactiveSelf();
 

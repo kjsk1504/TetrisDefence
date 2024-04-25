@@ -47,9 +47,9 @@ namespace TetrisDefence.Data.Manager
             }
 
             var enemy = PoolManager.Instance.GetEnemy((EItem)enemyIndex).transform;
+            enemy.gameObject.SetActive(true);
             enemy.parent = transform;
             enemy.position = StartPoint.position;
-            enemy.gameObject.SetActive(true);
         }
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: QuadgonalPrism
   m_EditorClassIdentifier: 
   index: 4
-  damage: 20
+  damage: 2
   speed: 1.2
   childIndex: 3

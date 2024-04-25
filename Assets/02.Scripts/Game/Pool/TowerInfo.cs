@@ -1,4 +1,7 @@
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using System;
+using System.Text;
+using static UnityEditor.FilePathAttribute;
 
 namespace TetrisDefence.Game.Pool
 {
@@ -8,8 +11,8 @@ namespace TetrisDefence.Game.Pool
         public int TowerIndex { get; private set; } = 0;
         public int[] TowerLocation { get; private set; } = new int[2];
         public int TowerTier { get; private set; } = 1;
-        public float AttackDamage { get; private set; } = 10.0f;
-        public int AttackSpeed { get; private set; } = 1;
+        public int AttackDamage { get; private set; } = 1;
+        public int AttackSpeed { get; private set; } = 5;
         public float SlowTime { get; private set; } = 0.0f;
         public float SplashDamage { get; private set; } = 0.0f;
         public float DotTime { get; private set; } = 0.0f;
@@ -27,6 +30,16 @@ namespace TetrisDefence.Game.Pool
         private int _minoZ = default;
         private int _minoO = default;
 
+
+        public TowerInfo(TowerInfo towerInfo)
+        {
+            TowerIndex = towerInfo.TowerIndex;
+            TowerLocation = towerInfo.TowerLocation;
+            TowerTier = towerInfo.TowerTier;
+            TowerTetris = towerInfo.TowerTetris;
+
+            UpdateMinos();
+        }
 
         public TowerInfo(int index, int[] location, int tier, int[] tetris, Action onUpdateTower = null)
         {
@@ -55,6 +68,30 @@ namespace TetrisDefence.Game.Pool
             if (onUpdateTower != null) OnUpdateTower += onUpdateTower;
 
             UpdateMinos();
+        }
+
+        
+        public string Print()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"TowerIndex: {TowerIndex}");
+            stringBuilder.AppendLine($"TowerLocation: {string.Join(",", TowerLocation)}");
+            stringBuilder.AppendLine($"TowerTier: {TowerTier}");
+            stringBuilder.AppendLine($"AttackDamage: {AttackDamage}");
+            stringBuilder.AppendLine($"AttackSpeed: {AttackSpeed}");
+            stringBuilder.AppendLine($"SlowTime: {SlowTime}");
+            stringBuilder.AppendLine($"SplashDamage: {SplashDamage}");
+            stringBuilder.AppendLine($"DotTime: {DotTime}");
+            stringBuilder.AppendLine($"AttackCooldown: {AttackCooldown}");
+            stringBuilder.AppendLine($"AttackRange: {AttackRange}");
+            stringBuilder.AppendLine($"TowerTetris: {string.Join(",", TowerTetris)}");
+
+            return stringBuilder.ToString();
+        }
+
+        public void ChangeIndex(int towerIndex)
+        {
+            TowerIndex = towerIndex;
         }
 
         public void TierUp()
@@ -89,7 +126,7 @@ namespace TetrisDefence.Game.Pool
 
         private void InitializeTower()
         {
-            AttackDamage = 10.0f;
+            AttackDamage = 1;
             AttackSpeed = 5;
             SlowTime = 0.0f;
             SplashDamage = 0.0f;

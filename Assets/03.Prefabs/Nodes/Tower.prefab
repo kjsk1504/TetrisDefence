@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de48e8ea4c06c87429a2704c6513a789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolIndex: 
+  <PoolIndex>k__BackingField: 
   itemIndex: 2
   <TowerLocation>k__BackingField: 0000000000000000
   <Tier>k__BackingField: 1

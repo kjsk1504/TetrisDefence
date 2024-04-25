@@ -4,6 +4,7 @@ using TetrisDefence.Game.Map;
 using TetrisDefence.Data.Enums;
 using UnityEngine;
 using System;
+using TMPro;
 
 namespace TetrisDefence.Game.Pool
 {
@@ -12,10 +13,11 @@ namespace TetrisDefence.Game.Pool
         [field: SerializeField] public int CurrentRoadIndex { get; protected set; }
 
         public EnemyInfo enemyInfo;
+        public TMP_Text hpText;
 
         protected float _movePercent;
 
-        private float _hp = default;
+        private int _hp = default;
         private float _moveSpeed = default;
         private EItem _childIndex = default;
 
@@ -49,28 +51,25 @@ namespace TetrisDefence.Game.Pool
             base.Born();
 
             InforamtionInitialization();
+            hpText.text = _hp.ToString();
             MobManager.Instance.EnemyRegister(this);
+
+            if (CurrentRoadIndex < 1)
+            {
+                transform.rotation = MapOfNodes.roads[1].transform.rotation;
+            }
+            else
+            {
+                StartCoroutine(C_RotationByRoad(CurrentRoadIndex - 1));
+            }
+
             Move();
         }
 
         public override void Death()
         {
-            if ((int)_childIndex < 3 || CurrentRoadIndex >= MapOfNodes.roads.Length)
-            {
-                base.Death();
-
-                return;
-            }
-
-            var child = PoolManager.Instance.GetEnemy(_childIndex);
-
-            child.transform.SetParent(transform.parent);
-            child.transform.position = transform.position;
-            child.transform.rotation = transform.rotation;
-            child.CurrentRoadIndex = CurrentRoadIndex;
-            child._movePercent = _movePercent;
-            child.ActiveSelf();
-
+            CurrentRoadIndex = 0;
+            _movePercent = 0;
             base.Death();
         }
 
@@ -86,18 +85,23 @@ namespace TetrisDefence.Game.Pool
             }
             else
             {
-                StartCoroutine(C_RotationByRoad());
+                if (CurrentRoadIndex < MapOfNodes.roads.Length - 1)
+                {
+                    StartCoroutine(C_RotationByRoad(CurrentRoadIndex + 1));
+                }
+
                 StartCoroutine(C_MoveLastHalf());
             }
         }
 
-        public void DamagedByBullet(float bulletDamage)
+        public void DamagedByBullet(int bulletDamage)
         {
             _hp -= bulletDamage;
+            hpText.text = _hp.ToString();
 
-            if (_hp < 0)
+            if (_hp <= 0)
             {
-                Death();
+                LeftChildDeath();
             }
         }
 
@@ -108,6 +112,26 @@ namespace TetrisDefence.Game.Pool
                 GameManager.Instance.NexusHPChange(-_hp);
                 Death();
             }
+        }
+
+        private void LeftChildDeath()
+        {
+            if ((int)_childIndex < 3 || CurrentRoadIndex >= MapOfNodes.roads.Length)
+            {
+                Death();
+
+                return;
+            }
+
+            var child = PoolManager.Instance.GetEnemy(_childIndex);
+            child.transform.SetParent(transform.parent);
+            child.transform.position = transform.position;
+            child.transform.rotation = transform.rotation;
+            child.CurrentRoadIndex = CurrentRoadIndex;
+            child._movePercent = _movePercent;
+            child.ActiveSelf();
+
+            Death();
         }
 
         private void InforamtionInitialization()
@@ -147,18 +171,19 @@ namespace TetrisDefence.Game.Pool
             Move();
         }
 
-        private IEnumerator C_RotationByRoad()
+        private IEnumerator C_RotationByRoad(int roadIndex)
         {
             float t = 0;
 
             while (t < 1)
             {
-                Quaternion.Slerp(transform.rotation, MapOfNodes.roads[CurrentRoadIndex].transform.rotation, t);
+                Quaternion.Slerp(transform.rotation, MapOfNodes.roads[roadIndex].transform.rotation, t);
                 t += Time.deltaTime * _moveSpeed;
                 yield return null;
             }
 
-            transform.rotation = MapOfNodes.roads[CurrentRoadIndex].transform.rotation;
+            transform.rotation = MapOfNodes.roads[roadIndex].transform.rotation;
+            hpText.transform.rotation = Quaternion.identity;
         }
     }
 }

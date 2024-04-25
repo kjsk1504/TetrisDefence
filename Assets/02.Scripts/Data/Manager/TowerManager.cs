@@ -28,12 +28,13 @@ namespace TetrisDefence.Data.Manager
 
         public void Unregister(Tower tower)
         {
-            int towerindex = towers.IndexOf(tower);
+            int towerIndex = towers.IndexOf(tower);
+
             if (towers.Remove(tower))
             {
-                for(int ix = towerindex; ix < towers.Count; ix++)
+                for(int ix = towerIndex; ix < towers.Count; ix++)
                 {
-                    towers[ix].towerIndex = ix + 1;
+                    towers[ix].towerInfo.ChangeIndex(ix + 1); 
                 }
             }
             else

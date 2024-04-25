@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HeptagonalPrism
   m_EditorClassIdentifier: 
   index: 7
-  damage: 50
+  damage: 5
   speed: 1.5
   childIndex: 6

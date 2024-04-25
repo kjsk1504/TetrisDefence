@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PentagonalPrism
   m_EditorClassIdentifier: 
   index: 5
-  damage: 30
+  damage: 3
   speed: 1.3
   childIndex: 4

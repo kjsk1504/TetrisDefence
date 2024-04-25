@@ -6,9 +6,9 @@ namespace TetrisDefence.UI
 {
     /// <summary>
     /// 플로팅 창 (마우스를 오버했을시 뜨는 창)
-    /// <br><see cref="UIPopUpBase"/>를 상속 받음</br>
+    /// <br><see cref="UIScreenBase"/>를 상속 받음</br>
     /// </summary>
-    public class UIFloatingWindow : UIPopUpBase
+    public class UIFloatingWindow : UIScreenBase
     {
         /// <summary> 패널의 위치 </summary>
         public Transform pannel;

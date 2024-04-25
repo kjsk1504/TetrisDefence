@@ -57,6 +57,21 @@ namespace TetrisDefence.Game.Map
             return gameObject.transform.position;
         }
 
+        public bool ComparePosition(float xPosition, float yPosition)
+        {
+            return (transform.position.x - 27.5f < xPosition) && (transform.position.x + 27.5 > xPosition)
+                && (transform.position.y - 27.5f < yPosition) && (transform.position.y + 27.5 > yPosition);
+        }
+
+        public bool ComparePosition(Vector2 position)
+        {
+            return ComparePosition(position.x, position.y);
+        }
+
+        public bool ComparePosition(Vector3 position)
+        {
+            return ComparePosition(position.x, position.y);
+        }
 
         /// <summary>
         /// 맵 정보(<see cref="MapOfNodes"/>)에 등록

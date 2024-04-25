@@ -49,13 +49,19 @@ namespace TetrisDefence.Game.Pool
 
         public void OnDrag(PointerEventData eventData)
         {
-            minoPrefab.OnDrag(eventData);
+            if (minoPrefab)
+            {
+                minoPrefab.OnDrag(eventData);
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            minoPrefab.OnEndDrag(eventData);
-            minoPrefab = null;
+            if (minoPrefab)
+            {
+                minoPrefab.OnEndDrag(eventData);
+                minoPrefab = null;
+            }
         }
     }
 }

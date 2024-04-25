@@ -45,7 +45,7 @@ namespace TetrisDefence.Data.Manager
                     {
                         StopAllCoroutines();
                         item.transform.SetParent(itemObjects.transforms[(int)itemIndex]);
-                        item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        item.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
                         item.gameObject.SetActive(false);
                     },
                     actionOnDestroy: (item) =>
@@ -79,7 +79,7 @@ namespace TetrisDefence.Data.Manager
                     {
                         StopAllCoroutines();
                         mino.transform.SetParent(minoObjects.transforms[(int)minoIndex]);
-                        mino.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                        mino.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
                         mino.gameObject.SetActive(false);
                     },
                     actionOnDestroy: (item) =>

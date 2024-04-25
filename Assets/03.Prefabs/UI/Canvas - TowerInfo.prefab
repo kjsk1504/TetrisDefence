@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -88,8 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &352238304470155610
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,11 +126,11 @@ RectTransform:
   - {fileID: 4465009387193004148}
   m_Father: {fileID: 8531372293031011530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: -68}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -90, y: -43}
   m_SizeDelta: {x: 170, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &761399151313369191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -211,7 +212,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4728800420250037308}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988743378229140723}
+        m_TargetAssemblyTypeName: TetrisDefence.UI.UITowerInformation, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6332460078616272231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +240,7 @@ MonoBehaviour:
   title: SELL
   message: "\uD0C0\uC6CC \uD310"
   tooltip: +50 gold
+  isMove: 0
 --- !u!1 &352441305801354523
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -315,8 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &470570003649531171
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -813,8 +828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &1146782779371588779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.26415092, g: 0.24406399, b: 0.09095763, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1283,7 +1299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1311,8 +1327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &1533579821176289831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,11 +1501,11 @@ RectTransform:
   - {fileID: 1389929885439674534}
   m_Father: {fileID: 8531372293031011530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: -15}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 90, y: 10}
   m_SizeDelta: {x: 170, y: 50}
-  m_Pivot: {x: 1, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1387936073288272943
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1570,7 +1587,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5661480663487306230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988743378229140723}
+        m_TargetAssemblyTypeName: TetrisDefence.UI.UITowerInformation, Assembly-CSharp
+        m_MethodName: SaveMinos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &854371496694827015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,8 +1613,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: SAVE
-  message: "\uD14C\uD2B8\uB9AC\uC2A4 \uC0C1\uD0DC \uC138\uC774\uBE0C"
+  message: "\uC0C1\uD0DC \uC138\uC774\uBE0C"
   tooltip: "*\uB418\uB3CC\uB9B4 \uC218 \uC5C6\uC74C"
+  isMove: 0
 --- !u!1 &1874254934783487743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,7 +1676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1674,8 +1704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &2115667379411263320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1900,8 +1931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &2396556771519719264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1990,8 +2022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &2555895055108052675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2080,8 +2113,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &2681258584128042286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,7 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2284,8 +2318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &3029016342130347719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,7 +2789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2782,8 +2817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &3326426847444630020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2872,8 +2908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4043872173990891396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,7 +3278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3269,8 +3306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4198737125240589887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,7 +3369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3359,8 +3397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4365992632222941485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3421,7 +3460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3449,8 +3488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4399272297194050518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,7 +3554,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7078973498103287363
 MonoBehaviour:
@@ -3569,6 +3609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minos: {fileID: 4591484938627165228}
+  tower: {fileID: 0}
   outPanel: {fileID: 6937225474430297836}
   _no: {fileID: 4043332419023003747}
   _location: {fileID: 3395525977175793822}
@@ -3777,7 +3818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3805,8 +3846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4503413747459408974
 GameObject:
   m_ObjectHideFlags: 0
@@ -4003,7 +4045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4031,8 +4073,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4664721638528873211
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,7 +4136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4121,8 +4164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &4692409280786592214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,7 +4554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4538,8 +4582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &5286628924014495286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4677,7 +4722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4705,8 +4750,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &5720660356719403538
 GameObject:
   m_ObjectHideFlags: 0
@@ -4767,7 +4813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4795,8 +4841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &5819388476553753011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,7 +5120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5101,8 +5148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &6192085302202219695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,7 +5211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5191,8 +5239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &6241661894844942761
 GameObject:
   m_ObjectHideFlags: 0
@@ -5253,7 +5302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5281,8 +5330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &6341746364323780548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,7 +5742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5720,8 +5770,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &6640632692248200278
 GameObject:
   m_ObjectHideFlags: 0
@@ -5918,7 +5969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5946,8 +5997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &6806832750861254213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6008,7 +6060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6036,8 +6088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7194989309723981110
 GameObject:
   m_ObjectHideFlags: 0
@@ -6175,7 +6228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6203,8 +6256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7260857081746349574
 GameObject:
   m_ObjectHideFlags: 0
@@ -6409,11 +6463,11 @@ RectTransform:
   - {fileID: 7623892832637067569}
   m_Father: {fileID: 8531372293031011530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: -15}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -90, y: 10}
   m_SizeDelta: {x: 170, y: 50}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3148235872041695752
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6495,7 +6549,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6500573813332631500}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988743378229140723}
+        m_TargetAssemblyTypeName: TetrisDefence.UI.UITowerInformation, Assembly-CSharp
+        m_MethodName: ResetRegister
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6208687809076712499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6511,6 +6577,7 @@ MonoBehaviour:
   title: RESET
   message: "\uB418\uB3CC\uB9AC\uAE30"
   tooltip: 
+  isMove: 0
 --- !u!1 &7543616070411562817
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6599,8 +6666,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7564401293570877430
 GameObject:
   m_ObjectHideFlags: 0
@@ -6661,7 +6729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6689,8 +6757,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7782701527066163912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,7 +6956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6915,8 +6984,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7852963533376657368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6977,7 +7047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7005,8 +7075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 0
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &7875816584967843212
 GameObject:
   m_ObjectHideFlags: 0
@@ -7203,7 +7274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7231,8 +7302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &8226381869268310548
 GameObject:
   m_ObjectHideFlags: 0
@@ -7293,7 +7365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7321,8 +7393,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &8232317711134756364
 GameObject:
   m_ObjectHideFlags: 0
@@ -7519,7 +7592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7547,8 +7620,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &8419715889486507957
 GameObject:
   m_ObjectHideFlags: 0
@@ -7609,7 +7683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7637,8 +7711,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 2
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
 --- !u!1 &8820959747181466488
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,11 +8089,11 @@ RectTransform:
   - {fileID: 6425490029435066430}
   m_Father: {fileID: 8531372293031011530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: -68}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 90, y: -43}
   m_SizeDelta: {x: 170, y: 50}
-  m_Pivot: {x: 1, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6957965879236076264
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8100,7 +8175,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3870173229295948260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1988743378229140723}
+        m_TargetAssemblyTypeName: TetrisDefence.UI.UITowerInformation, Assembly-CSharp
+        m_MethodName: TowerTierUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &317566850900045604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8116,6 +8203,7 @@ MonoBehaviour:
   title: "\uD2F0\uC5B4 \uC5C5"
   message: "\uACF5\uAC04\uC744 1\uCE78 \uB298\uB9BC"
   tooltip: '- 50gold'
+  isMove: 0
 --- !u!1 &8965556851931843257
 GameObject:
   m_ObjectHideFlags: 0
@@ -8312,7 +8400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8340,5 +8428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6befee8e278bd41a04867c260e2db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minoIndex: 0
   <Tier>k__BackingField: 3
+  <IsActivated>k__BackingField: 0
+  <MinoIndex>k__BackingField: 0
