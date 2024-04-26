@@ -10,6 +10,7 @@ namespace TetrisDefence.Game.Pool
     {
         [field: SerializeField] public int[] TowerLocation { get; private set; } = new int[2];
         [field: SerializeField] public int Tier { get; private set; } = 1;
+        [field: SerializeField] public bool IsMouted { get; private set; } = false;
 
         public int towerIndex = default;
         public Bullet bulletPrefab;
@@ -31,12 +32,8 @@ namespace TetrisDefence.Game.Pool
             {
                 attackRange = GetComponentInChildren<Collider>();
             }
-        }
 
-        private void Start()
-        {
-            //TowerLocation = transform.GetComponentInParent<NodeSocket>().Location; //todo: towerlocation을 드래그가 끝난 시점에 부여
-            towerInfo = new TowerInfo(towerIndex, TowerLocation, Tier, new int[7], UpdateTower);
+            attackRange.enabled = false;
         }
 
         private void Update()
@@ -99,6 +96,22 @@ namespace TetrisDefence.Game.Pool
                 .Set(muzzle.transform.position, barrel.transform.rotation, towerInfo.AttackSpeed, towerInfo.AttackDamage, 
                      (towerInfo.AttackRange/2 - 1) / towerInfo.AttackSpeed, towerInfo.SlowTime, towerInfo.DotTime)
                 .transform.SetParent(transform);
+        }
+
+        public void Mounting(TowerNode towerNode)
+        {
+            towerNode.Mount(this);
+            transform.position = towerNode.transform.position;
+            TowerLocation = towerNode.Location;
+            towerInfo = new TowerInfo(towerIndex, TowerLocation, Tier, new int[7], UpdateTower);
+            attackRange.enabled = true;
+            IsMouted = true;
+        }
+
+        public void Unmounting()
+        {
+            TowerManager.Instance.Unregister(this);
+            IsMouted = false;
         }
 
         private void RemoveFromList(IPool pool)

@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using TetrisDefence.Data.Enums;
 using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Pool;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TetrisDefence.Data.Utill
@@ -18,6 +21,11 @@ namespace TetrisDefence.Data.Utill
         //public TMP_Dropdown spawn;
         public TMP_Text textMousePosition;
         public TMP_Text textInputString;
+        public TMP_Text physicsRaycastTarget;
+        public TMP_Text GraphicRaycastTarget;
+
+        private PointerEventData _pointerEventData = new PointerEventData(EventSystem.current);
+        private List<RaycastResult> _results = new List<RaycastResult>();
         private KeyCode _oldKeyCode;
         private EventType _oldKeyType;
         private string _oldString;
@@ -94,6 +102,34 @@ namespace TetrisDefence.Data.Utill
             if (InputManager.Instance.DevConsole)
             {
                 _canvas.enabled = !_canvas.enabled;
+            }
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(InputManager.Instance.MousePosition), out var hit))
+            {
+                physicsRaycastTarget.text = hit.transform.name;
+            }
+            else
+            {
+                physicsRaycastTarget.text = string.Empty;
+            }
+
+            _pointerEventData.position = InputManager.Instance.MousePosition;
+            EventSystem.current.RaycastAll(_pointerEventData, _results);
+
+            if (_results.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var result in _results)
+                {
+                    sb.AppendLine(result.gameObject.name);
+                }
+                
+                GraphicRaycastTarget.text = sb.ToString();
+            }
+            else
+            {
+                GraphicRaycastTarget.text = string.Empty;
             }
         }
 

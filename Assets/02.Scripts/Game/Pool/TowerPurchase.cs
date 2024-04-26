@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using TetrisDefence.Data.Manager;
 using TetrisDefence.Game.Map;
 using UnityEngine;
@@ -39,21 +41,13 @@ namespace TetrisDefence.Game.Pool
         {
             if (_isDrag)
             {
-                //todo: 타워 노드 가져오는 법 생각하기
-                print($"[{name}]: end");
-                var result = eventData.pointerCurrentRaycast;
-                print(result);
-                if (result.gameObject)
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(InputManager.Instance.MousePosition), out var hit))
                 {
-                    if (result.gameObject.TryGetComponent<TowerNode>(out var towerNode))
-                    {
-                        print($"[{name}]: mount");
-                        transform.position = towerNode.GetPosition();
-                        transform.SetParent(towerNode.transform.parent);
-                    }
+                    print("physics raycast hit: " + hit.transform.name);
+                    towerPrefab.Mounting(hit.transform.GetComponent<TowerNode>());
+                    return;
                 }
 
-                print("death");
                 towerPrefab.Death();
                 towerPrefab = null;
 
